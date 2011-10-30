@@ -1,16 +1,16 @@
 <?php
 
     class Submission {
-        public static function listing {
+        public static function Listing {
             return db_select( 'submissions' );
         }
-        public static function update( $title, $content, $id = false ) {
-            if ( $id == false ) {
-                return db_insert( 'submissions', compact( 'title', 'content' ) );
-            }
-            return db_update( 'submissions', compact( 'id' ), compact( 'title', 'content' ) );
+        public static function Create( $assignmentid, $studentid, $iscorrect = 0, $isreplied = 0, $id ) {
+            return db_insert( 'submissions', compact( 'assignmentid', 'studentid', 'iscorrect', 'isreplied' ) );
         }
-        public static function delete( $id ) {
+        public static function Update( $assignmentid, $studentid, $iscorrect, $isreplied, $id ) {
+            return db_update( 'submissions', compact( 'id' ), compact( 'assignmentid', 'studentid', 'iscorrect', 'isreplied' ) );
+        }
+        public static function Delete( $id ) {
             return db_delete( 'submissions', compact( 'id' ) );
         }
     }
