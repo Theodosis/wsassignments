@@ -1,0 +1,60 @@
+body{
+    padding: 0;
+    color: #333;
+}
+#topbar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    border-radius: 0 0 10px 10px;
+    background: #d0d0dd;
+    box-shadow: 0 0 4px #ddd;
+}
+
+div.main{
+    padding: 40px 5px 0 5px;
+    background: #f0f0ff;
+    border-radius: 3px;
+}
+form{
+    border: 1px solid #ccc;
+}
+form input[type=text]{
+    width: 200px;
+    line-height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0 4px 4px -4px #333 inset;
+}
+form input[type=submit]{
+    line-height: 20px;
+    padding: 4px;
+    border: 0;
+    border-radius: 4px;
+    background: -o-linear-gradient( top, #ccc, #ddd );
+    background: -ms-linear-gradient( top, #ccc, #ddd );
+    background: -moz-linear-gradient( top, #ccc, #ddd );
+    background: -webkit-linear-gradient( top, #ccc, #ddd );
+}
+form input[type=submit]:hover{
+    background: -o-linear-gradient( bottom, #ccc, #ddd );
+    background: -ms-linear-gradient( bottom, #ccc, #ddd );
+    background: -moz-linear-gradient( bottom, #ccc, #ddd );
+    background: -webkit-linear-gradient( bottom, #ccc, #ddd );
+}
+form input[type=submit]:active{
+    background: #bbb;
+}
+table{
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+}
+
+tr.unchecked{
+    font-weight: bold;
+}
+tr.active{
+    border: 1px solid red;
+}
