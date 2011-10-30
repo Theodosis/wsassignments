@@ -1,6 +1,6 @@
 <?php
 
-    class SubmissionModel {
+    class Submission {
         public static function listing {
             return db_array(
                 "SELECT
@@ -9,7 +9,7 @@
                     submissions;"
             );
         }
-        public static function update( $id = false ) {
+        public static function update( $id = false, $title, $content ) {
             if ( $id == false ) {
                 db(
                     "INSERT INTO
