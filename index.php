@@ -3,9 +3,11 @@
     global $settings;
     global $user;
 
+    $settings = require( 'settings.php' );
     require( 'models/user.php' );
 
-    $settings = require( 'settings.php' );
+    $controllerWhitelist = array( 'submission' );
+    $methodWhitelist = array( 'view', 'listing', 'update', 'delete' );
 
     $user = User::BasicAuth( $settings[ 'users' ] );
 
@@ -15,8 +17,20 @@
         echo "Not authorized";
         exit;
     }
-    else {
-        echo $user[ 'name' ];
+
+    $controller = @$_GET[ 'controller' ] or 'submission';
+
+    if ( !in_array( $controller, $controllerWhitelist ) ) {
+        $controller = 'submission';
     }
 
+    $method = @$_GET[ 'method' ] or 'listing';
+    if ( !in_array( $method, $methodWhitelist ) ) {
+        $method = 'listing';
+    }
+
+    $params = array_merge( $_GET, $_POST );
+    
+    require( "controllers/$controller.php" );
+    call_user_func( array( $controller, $method ), $params )
 ?>
