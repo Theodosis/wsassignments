@@ -21,13 +21,13 @@
             }
             else {
                 db(
-                    "INSERT INTO
+                    "UPDATE
                         submissions
                     SET
                         title = '$title',
                         content = '$content'
                     WHERE
-                        id = '$id';"
+                        id = $id;"
                 );
             }
         }
@@ -36,7 +36,7 @@
                 "DELETE FROM
                     submissions
                 WHERE
-                    id = '$id'
+                    id = $id
                 LIMIT
                     1;"
             );
