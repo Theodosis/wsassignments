@@ -1,10 +1,10 @@
 <?php
 
     class Submission {
-        public static function Listing {
+        public static function Listing() {
             return db_select( 'submissions' );
         }
-        public static function Create( $assignmentid, $studentid, $iscorrect = 0, $isreplied = 0, $id ) {
+        public static function Create( $assignmentid, $studentid, $iscorrect, $isreplied, $id ) {
             return db_insert( 'submissions', compact( 'assignmentid', 'studentid', 'iscorrect', 'isreplied' ) );
         }
         public static function Update( $assignmentid, $studentid, $iscorrect, $isreplied, $id ) {
