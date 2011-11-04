@@ -1,9 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?='<?xml version="1.0" encoding="utf-8"?>'?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="el" lang="el">
     <head>
         <title>Web Seminar Assignment Dashboard</title>
-        <link type="text/css" rel="stylesheet" href="/css/style.css" />
+        <link type="text/css" rel="stylesheet" href="../css/demo_table_jui.css" />
+        <link type="text/css" rel="stylesheet" href="../css/demo_table.css" />
+        <link type="text/css" rel="stylesheet" href="../css/style.css" />
     </head>
     <body>
         <div id="topbar">
@@ -16,35 +18,61 @@
                     <input type="text" name="firstname" placeholder="Όνομα" />
                     <input type="text" name="lastname" placeholder="Επίθετο" />
                     <input type="text" name="email" placeholder="email" />
+                    <select name="assnum">
+                        <option value="1" selected="selected">1</option>
+                    </select>
                     <input type="submit" value="Δώσε!" />
                 </fieldset>
             </form>
-            <div class="tools">
-                
-            </div>
             <table>
-                <tr>
-                    <th>Id</th>
-                    <th>Όνομα</th>
-                    <th>Επίθετο</th>
-                    <th>e-mail</th>
-                    <th>E1</th>
-                </tr>
-                <tr id="sub_1">
-                    <td>1</td>
-                    <td>Θεοδόσης</td>
-                    <td>Σουργκούνης</td>
-                    <td>thsourg@gmail.com</td>
-                    <td>
-                        <span class="correct qm">?</span>
-                        <span class="answered no">X</span>
-                    </td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th class="id">Id</th>
+                        <th class="name">Όνομα</th>
+                        <th class="lastname">Επίθετο</th>
+                        <th class="email">e-mail</th>
+                        <th class="assnum">Εργασία</th>
+                        <th class="accepted">Δεκτή</th>
+                        <th class="answered">Απαντήθηκε</th>
+                        <th class="tools">Εργαλεία</th>
+                    </tr>
+                </thead>
+                <tbody><?php
+                    for( $i = 0; $i < 400; ++$i ){
+                        ?><tr id="sub_<?=$i?>">
+                            <td class="id"><?=$i?></td>
+                            <td class="name">Θεοδόσης</td>
+                            <td class="lastname">Σουργκούνης</td>
+                            <td class="email">thsourg@gmail.com</td>
+                            <td class="assnum">1</td>
+                            <td class="accepted">
+                                <span class="hidden">Yes</span>
+                                <span class="yes selected">&#10003;</span>
+                                <span class="no">&#215;</span>
+                            </td>
+                            <td class="answered">
+                                <span class="hidden"></span>
+                                <span class="yes">&#10003;</span>
+                                <span class="no">&#215;</span>
+                            </td>
+                            <td class="tools">
+                                <a href="" class="edit">edit</a>
+                                <a href="" class="delete">delete</a>
+                                <a href="" class="showcomments">Show Comments</a>
+                            </td>
+                        </tr><?php
+                    }
+                ?></tbody>
             </table>
         </div>
-        <script type="text/javascript" src="/javascript/jquery-1.6.2.min.js"></script>
-        <script type="text/javascript" src="/javascript/jquery-ui-1.8.16.custom.min.js"></script>
-        <script type="text/javascript" src="/javascript/script.js"></script>
-        
+        <ul class="commentpanel">
+            <li><strong>Ted</strong> Hey!</li>
+            <li><strong>Ted</strong> Hey!</li>
+            <li><strong>Ted</strong> Hey!</li>
+        </ul>
+        <script type="text/javascript" src="../javascript/jquery-1.6.2.min.js"></script>
+        <script type="text/javascript" src="../javascript/jquery-ui-1.8.16.custom.min.js"></script>
+        <script type="text/javascript" src="../javascript/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="../javascript/script.js"></script>
     </body>
 </html>
