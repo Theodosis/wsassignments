@@ -2,12 +2,20 @@
 
     global $settings;
     global $user;
+    global $controller;
+    global $method;
 
     $settings = require( 'settings.php' );
+    date_default_timezone_set( $settings[ 'timezone' ] );
+
+    require( 'models/db.php' );
+    require( 'controllers/controller.php' );
+
+
     require( 'models/user.php' );
 
     $controllerWhitelist = array( 'submission' );
-    $methodWhitelist = array( 'view', 'listing', 'update', 'delete' );
+    $methodWhitelist = array( 'view', 'listing', 'create', 'update', 'delete' );
 
     $user = User::BasicAuth( $settings[ 'users' ] );
 
@@ -32,5 +40,5 @@
     $params = array_merge( $_GET, $_POST );
     
     require( "controllers/$controller.php" );
-    call_user_func( array( $controller, $method ), $params )
+    call_user_func( array( $controller . "controller", $method ), $params )
 ?>
