@@ -2,19 +2,16 @@
 
     $settings = array(
         'title' => 'Web Seminar Assignments',
+        'timezone' => 'Europe/Athens',
+        'domain' => '',
         'db' => array(
             'host' => 'localhost',
             'name' => 'name',
             'user' => 'user',
             'pass' => 'pass'
         ),
-        'users' => array(
-            'user' => array(
-                'password' => 'password',
-                'email' => 'email',
-                'name' => 'name'
-            )
-        )
+        'validator' => 'http://url/to/validator',
+        'cookiename' => 'user'
     );
 
     return $settings;
