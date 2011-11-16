@@ -21,16 +21,7 @@
             if ( empty( $assignment ) ) {
                 die( 'no such assignment' );
             }
-
-            $student = Student::GetByEmail( $params[ 'student_email' ] );
-            if ( empty( $student ) ) {
-                if ( !Controller::RequiredParameters( $params, 'student_firstname', 'student_lastname' ) ) return;
-                $student = Student::Create( $params[ 'student_firstname' ], $params[ 'student_lastname' ], $params[ 'student_email' ] );
-            }
-
-            $submission = Submission::Create( $assignment[ 'id' ], $student[ 'id' ], 'unknown', 'unknown' );
-
-            Controller::View( compact( 'assignment', 'student', 'submission' ) );
+            // TODO
         }
         public static function Update( $params ) {
         }
