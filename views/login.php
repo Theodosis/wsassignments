@@ -6,13 +6,14 @@
         <link type="text/css" rel="stylesheet" href="../css/style.css" />
     </head>
     <body>
-        <div id="topbar">
-            <h1>Web Seminar Homework Dashboard</h1>
-            <div class="hello">Hello, <a href="">stranger</a></div>
-        </div>
-        <div id="main">
-            
-        </div>
+        <form class="login" method="post" action="/session/create">
+            <div>
+                <input class="text" type="text" placeholder="Όνομα" name="username" />
+                <input class="text" type="password" placeholder="Κωδικός" name="password" />
+                <input type="submit" value="Είσοδος" />
+            </div>
+        </form>
+        
         <script type="text/javascript" src="../javascript/jquery-1.6.2.min.js"></script>
     </body>
 </html>
