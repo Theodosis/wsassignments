@@ -1,0 +1,7 @@
+RewriteEngine On
+
+RewriteRule ^login$             index.php?resource=session&method=view [L,QSA]
+RewriteRule ^session/create/$   index.php?resource=session&method=create [L,QSA]
+RewriteRule ^session/delete/$   index.php?resource=session&method=delete [L,QSA]
+
+
