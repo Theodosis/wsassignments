@@ -113,7 +113,7 @@
         );
         return mysql_affected_rows();
     }
-    function db_select( $table, $where ) {
+    function db_select( $table, $where = array(1=>1) ) {
         $wreplace = array();
         $wfields = array();
         foreach ( $where as $field => $value ) {

@@ -9,16 +9,16 @@
     $settings[ 'debug' ] = ( isset( $_GET[ 'debugkey' ] ) && $_GET[ 'debugkey' ] == 'ec456175b0f06473e2fdbef8720fbfa6' );
     date_default_timezone_set( $settings[ 'timezone' ] );
 
-    require( 'models/db.php' );
-    require( 'controllers/controller.php' );
+    clude( 'models/db.php' );
+    clude( 'controllers/controller.php' );
 
 
-    require( 'models/user.php' );
+    clude( 'models/user.php' );
 
-    $controllerWhitelist = array( 'submission', 'session', 'dashboard' );
+    $controllerWhitelist = array( 'submission', 'session', 'dashboard', 'adminpanel' );
     $methodWhitelist = array( 'view', 'listing', 'create', 'update', 'delete' );
     
-    $controller = @$_GET[ 'resource' ] or 'session';
+    $controller = @$_GET[ 'resource' ] or 'dashboard';
     $method = @$_GET[ 'method' ] or 'view';
     if ( !in_array( $controller, $controllerWhitelist ) ) {
         $controller = 'dashboard';
@@ -37,9 +37,11 @@
             $method == "create" or $method = "view";
         }
     }
-
 	if ( $method == 'create' || $method == 'delete' || $method == 'update' ) {
-        $_SERVER[ 'REQUEST_METHOD' ] == 'POST' or die( 'Non-idempotent REST method cannot be applied with the idempotent HTTP request method "' . $_SERVER[ 'REQUEST_METHOD' ] . '"' );
+        if( $_SERVER[ 'REQUEST_METHOD' ] != 'POST' ){
+            header( "Location: /" );
+            die( 'Non-idempotent REST method cannot be applied with the idempotent HTTP request method "' . $_SERVER[ 'REQUEST_METHOD' ] . '". Redirecting to home...' );
+        }
 
 		// check http referer
 		if ( !isset( $_SERVER['HTTP_REFERER' ] ) ) {
@@ -63,6 +65,15 @@
     
     $params = array_merge( $_GET, $_POST, $_FILES );
     
-    require( "controllers/$controller.php" );
+    function clude( $path ) {
+        static $included = array();
+        if ( !isset( $included[ $path ] ) ) {
+            $included[ $path ] = true;
+            return include $path;
+        }
+        return true;
+    }
+    
+    clude( "controllers/$controller.php" );
     call_user_func( array( $controller . "controller", $method ), $params );
 ?>

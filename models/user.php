@@ -44,12 +44,12 @@
             return User::AuthtokenValidation( $userid, $authtoken );
         }
         public static function AuthtokenValidation( $userid, $authtoken )  {
-            if ( !is_int( $userid ) || !$userid || !$authtoken ) {
+            if ( !is_int( $userid ) || !$userid || !$authtoken || $authtoken == "" ) {
                 return false;
             }
             $res = db(
                 'SELECT
-                    `id`, `username`, `authtoken`
+                    `id`, `username`, `authtoken`, `rights`, `email`
                 FROM
                     `user`
                 WHERE
@@ -73,7 +73,7 @@
             }
             $res = db(
                 'SELECT
-                    `id`, `username`, `authtoken` 
+                    `id`, `username`, `authtoken`, `rights`, `email`
                 FROM
                     `user`
                 WHERE

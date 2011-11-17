@@ -3,11 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="el" lang="el">
     <head>
         <title>Web Seminar Assignment Dashboard</title>
-        <link type="text/css" rel="stylesheet" href="/wsass/css/global.css" />
-        <base href="http://theodosis.podzone.net/wsass/" />
+        <link type="text/css" rel="stylesheet" href="/css/global.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     </head>
     <body>
-        <form method="POST" action="/wsass/session/create/" class="login<?php
+        <form method="POST" action="/session/create" class="login<?php
             if( isset( $login ) ){
                 ?> error<?php
             }

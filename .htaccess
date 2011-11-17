@@ -1,7 +1,11 @@
+AuthType Basic
+AuthName "Restricted Access"
+AuthUserFile /var/www/dashboard.webseminars.ee.auth.gr/.htpass
+Require user admin
+
 RewriteEngine On
-
-RewriteRule ^login$             index.php?resource=session&method=view [L,QSA]
-RewriteRule ^session/create/$   index.php?resource=session&method=create [L,QSA]
-RewriteRule ^session/delete/$   index.php?resource=session&method=delete [L,QSA]
-
-
+RewriteRule ^login$                 index.php?resource=session&method=view [L,QSA]
+RewriteRule ^session/create$        index.php?resource=session&method=create [L,QSA]
+RewriteRule ^session/delete$        index.php?resource=session&method=delete [L,QSA]
+RewriteRule ^admin$                 index.php?resource=adminpanel&method=view [L,QSA]
+RewriteRule ^submission/create$     index.php?resource=submission&method=create [L,QSA]
