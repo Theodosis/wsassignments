@@ -6,7 +6,6 @@
     global $method;
 
     $settings = require( 'settings.php' );
-    $settings[ 'debug' ] = ( isset( $_GET[ 'debugkey' ] ) && $_GET[ 'debugkey' ] == 'ec456175b0f06473e2fdbef8720fbfa6' );
     date_default_timezone_set( $settings[ 'timezone' ] );
 
     clude( 'models/db.php' );
