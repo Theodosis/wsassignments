@@ -9,3 +9,4 @@ RewriteRule ^session/create$        index.php?resource=session&method=create [L,
 RewriteRule ^session/delete$        index.php?resource=session&method=delete [L,QSA]
 RewriteRule ^admin$                 index.php?resource=adminpanel&method=view [L,QSA]
 RewriteRule ^submission/create$     index.php?resource=submission&method=create [L,QSA]
+RewriteRule ^submission/update$     index.php?resource=submission&method=update [L,QSA]

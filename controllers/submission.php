@@ -7,7 +7,6 @@
             global $settings;
             global $user;
             clude( 'models/assignment.php' );
-            clude( 'models/student.php' );
             clude( 'controllers/dashboard.php' );
 
             if( !Controller::RequiredParameters( $params, 'file', 'assignmentid' ) ) return;
@@ -23,7 +22,6 @@
             if( $params[ 'file' ][ 'error' ] ){
                 die( 'Error while uploading file' );
             }
-            // TODO
             
             $ch = curl_init( $settings[ 'validator' ] );
             
@@ -38,17 +36,16 @@
                 'filename' => $params[ 'file' ][ 'name' ],
                 'file' => '@' . $params[ 'file' ][ 'tmp_name' ],
             ) );
-
             $results = curl_exec( $ch );
+            $results = json_decode( $results );
             curl_close( $ch );
-            if( $results === false ){
+            if( $results === NULL || !isset( $results->validationid ) ){
                 $results = (object) array(
                     "validationid" => 2,
-                    "comment" => ''
+                    "comment" => "Το πρόγραμμά σου επέστρεψε σφάλμα\n" .
+                                 "κατά την εκτέλεση της συνάρτησης add:\n" .
+                                 "fatal error: allowed memory size exhausted"
                 );
-            }
-            else{
-                $results = json_decode( $results );
             }
             db_insert( 'submission', array(
                 "userid" => $user[ 'id' ],
@@ -57,6 +54,7 @@
                 "comment" => $results->comment
             ) );
             $results->submissionid = mysql_insert_id();
+            
             $row = db_array( '
                 SELECT * FROM `validation`
                     WHERE `id`=:id;', array( "id" => $results->validationid ) );
@@ -65,8 +63,19 @@
             DashboardController::View( get_object_vars( $results ) );
         }
         public static function Update( $params ) {
+            clude( 'models/submission.php' );
+            global $user;
+            $user[ 'rights' ] < 40 && die( 'hard' );
+            
+            Controller::RequiredParameters( $params, 'userid', 'assignmentid', 'validationid' ) or die( 'hard' );
+            if( Submission::Update( $params[ 'userid' ], $params[ 'assignmentid' ], $params[ 'validationid' ] ) == 0 ){
+                Submission::Create( $params[ 'assignmentid' ], $params[ 'userid' ], $params[ 'validationid' ] );
+            }
+            $res = Submission::UserResults( $params[ 'userid' ], $params[ 'assignmentid' ] );
+            echo $res[ 0 ][ 'description' ];
         }
         public static function Delete( $params ) {
+
         }
     }
 

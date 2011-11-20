@@ -1,6 +1,10 @@
 <?php 
     global $user;
+    if( $user[ 'rights' ] > 40 ){
+        ?><a href="admin" id="crypto"></a><?php
+    }
 ?>
+
 <p>
     Καλωσήρθες στο σύστημα υποβολής εργασιών. 
     Σε περίπτωση που επικοινωνήσεις μαζί μας, 
@@ -34,9 +38,9 @@
                 ?></span>
                 <span class="result"><?php
                     echo $submission[ 'status' ];
-                ?></span><pre><?php
-                    echo $submission[ 'comment' ];
-                ?></pre>
+                ?></span><p><?php
+                    echo htmlentities( $submission[ 'comment' ] );
+                ?></p>
             </li><?php
         }
     ?></ul>

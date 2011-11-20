@@ -13,7 +13,7 @@
             }
 
             if ( !empty( $missingParameters ) ) {
-                Controller::View( compact( 'missingParameters' ) );
+                //Controller::View( compact( 'missingParameters' ) );
                 return false;
             }
 

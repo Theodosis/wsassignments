@@ -93,6 +93,7 @@ form.login input[type=submit]:active{
 .adminpanel #container{
     width: auto;
     margin-right: 4px;
+    margin-left: 4px;
 }
 #container h1{
     color: #393;
@@ -107,6 +108,24 @@ form.login input[type=submit]:active{
     height: 50px;
     background:  url(../images/exit.png) no-repeat 0 0;
     cursor: pointer;
+}
+#back{
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background: url(../images/back.png) no-repeat 0 0;
+}
+#crypto{
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background: url(../images/crypto.png) no-repeat 0 0;
 }
 
 .current{
@@ -132,7 +151,7 @@ form.login input[type=submit]:active{
     font-size: 0.9em;
     padding-right: 20px;
 }
-.current li pre{
+.current li p{
     margin: 20px 100px;
     background: white;
     padding: 20px;
