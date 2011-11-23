@@ -1,7 +1,7 @@
 <?php 
     global $user;
     if( $user[ 'rights' ] > 40 ){
-        ?><a href="admin" id="crypto"></a><?php
+        ?><a href="/admin" id="crypto"></a><?php
     }
 ?>
 
@@ -29,7 +29,7 @@
         foreach( $submission_list as $submission ){
             ?><li class="validation_<?php 
                 echo $submission[ 'validationid' ]; 
-                if( isset( $results ) && $submission[ 'id' ] == $results[ 'submissionid' ] ){
+                if( isset( $results[ 'submissionid' ] ) && $submission[ 'id' ] == $results[ 'submissionid' ] ){
                     echo " result";
                 }
             ?>">
@@ -38,9 +38,9 @@
                 ?></span>
                 <span class="result"><?php
                     echo $submission[ 'status' ];
-                ?></span><p><?php
-                    echo htmlentities( $submission[ 'comment' ] );
-                ?></p>
+                ?></span><pre><?php
+                    echo strip_tags( $submission[ 'comment' ] );
+                ?></pre>
             </li><?php
         }
     ?></ul>

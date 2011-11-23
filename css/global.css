@@ -146,18 +146,22 @@ form.login input[type=submit]:active{
 .current li.validation_0{
     color: #396;
 }
+.current li.validation_26{
+    color: #339;
+}
 .current li .when{
     color: #777;
     font-size: 0.9em;
-    padding-right: 20px;
+    padding-right: 15px;
 }
-.current li p{
-    margin: 20px 100px;
+.current li pre{
+    margin: 20px  0 20px 100px;
     background: white;
     padding: 20px;
     border: 2px solid #666;
     border-radius: 10px;
     opacity: 0.8;
+    overflow-x: auto;
 }
 .current li.result{
     font-weight: bold;
@@ -178,7 +182,6 @@ ul.assignmentlist h2:after{
     display: inline-block;
     width: 20px;
     text-align: left;
-    cursor: pointer;
 }
 h2.empty:after{
     content: '?';

@@ -41,10 +41,8 @@
             curl_close( $ch );
             if( $results === NULL || !isset( $results->validationid ) ){
                 $results = (object) array(
-                    "validationid" => 2,
-                    "comment" => "Το πρόγραμμά σου επέστρεψε σφάλμα\n" .
-                                 "κατά την εκτέλεση της συνάρτησης add:\n" .
-                                 "fatal error: allowed memory size exhausted"
+                    "validationid" => 23,
+                    "comment" => ""
                 );
             }
             db_insert( 'submission', array(
