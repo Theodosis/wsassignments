@@ -1,5 +1,5 @@
 <?php
-    error_reporting( E_ALL );
+    //error_reporting( E_ALL );
     global $settings;
     global $user;
     global $controller;
