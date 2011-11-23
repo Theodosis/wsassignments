@@ -1,26 +1,8 @@
 <?php
+    // class user is responsible for user authentication.
     class User {
-    /*    public static function BasicAuth( $users ) {
-            if ( empty( $_SERVER[ 'PHP_AUTH_USER' ] ) ) {
-                return false;
-            }
-
-            $username = $_SERVER[ 'PHP_AUTH_USER' ];
-            $password = $_SERVER[ 'PHP_AUTH_PW' ];
-
-            if ( !isset( $users[ $username ] ) ) {
-                return false;
-            }
-
-            $user = $users[ $username ];
-            $user[ 'name' ] = $username;
-
-            if ( $user[ 'password' ] != $password ) {
-                return false;
-            }
-
-            return $user;
-        } */
+        // function GetCookieData extracts the login cookie of a user 
+        // and returns the details of the user if logged in, false otherwise.
         public static function GetCookieData() {
             global $settings;
 
@@ -43,6 +25,9 @@
             }
             return User::AuthtokenValidation( $userid, $authtoken );
         }
+
+        // function AuthtokenValidation returns a user by her user id
+        // and her authtoken.
         public static function AuthtokenValidation( $userid, $authtoken )  {
             if ( !is_int( $userid ) || !$userid || !$authtoken || $authtoken == "" ) {
                 return false;
@@ -67,6 +52,9 @@
             
             return false;
         }
+
+        // function Login selects a user by her username and password, 
+        // and sets her authtoken on success. Returns false otherwise.
         public static function Login( $username, $password ) {
             if( !$username || !$password ) {
                 return false;
@@ -91,6 +79,9 @@
 
             return $row;
         }
+
+        // function Logout clears the authtoken of a user. Thus, all sessions from all
+        // places are terminated.
         public static function Logout(){
             global $user;
             $id = ( int )$user[ 'id' ];
@@ -104,6 +95,9 @@
                     compact( 'id' )
             );
         }
+        
+        // function RenewAuthtoken generates a pseudo-random string and sets user's authtoken
+        // to that string.
         public static function RenewAuthtoken( $userid ) {
             $userid = ( int )$userid;
 

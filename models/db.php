@@ -1,6 +1,10 @@
 <?php
     /*
         Author: Dionysis "dionyziz" Zindros <dionyziz@gmail.com>
+
+        This file is responsible to connect to a MySQL server using credentials 
+        from the settings.
+        It also defines some helping functions for querying the database safely.
     */
     global $settings;
 
@@ -9,6 +13,8 @@
 
     mysql_query( "SET NAMES UTF8;" );
 
+    // function db executes the query sql after binding the attributes bind
+    // and returns a mysql resource.
     function db( $sql, $bind = false ) {
         if ( $bind == false ) {
             $bind = array();
@@ -46,6 +52,9 @@
         }
         return $res;
     }
+
+    // function db_array executes the query sql after binding the attributes bind
+    // and returns the results in an array
     function db_array( $sql, $bind = false, $id_column = false ) {
         $res = db( $sql, $bind );
         $rows = array();
@@ -61,6 +70,8 @@
         }
         return $rows;
     }
+
+    // function db_insert inserts a row with values on set in the specified table
     function db_insert( $table, $set ) {
         $fields = array();
         foreach ( $set as $field => $value ) {
@@ -75,6 +86,8 @@
         );
         return mysql_insert_id();
     }
+    
+    // function db_delete deletes a subset of the specified table using the where array to select them
     function db_delete( $table, $where ) {
         $fields = array();
         foreach ( $where as $field => $value ) {
@@ -89,6 +102,9 @@
         );
         return mysql_affected_rows();
     }
+
+    // function db_update updates a subset of the selected table using the where array, and sets 
+    // the values defined by set.
     function db_update( $table, $where, $set ) {
         $wfields = array();
         $wreplace = array();
@@ -113,6 +129,9 @@
         );
         return mysql_affected_rows();
     }
+    
+    // function db_select selects a subset of the specified table, using the where array. 
+    // If where is omitted it returns the whole table.
     function db_select( $table, $where = array(1=>1) ) {
         $wreplace = array();
         $wfields = array();
@@ -130,6 +149,8 @@
                 $wreplace
         );
     }
+    
+    // function db_fetch takes a mysql resource and returns it's results into an array.
     function db_fetch( $res ) {
         $ret = array();
         while ( $row = mysql_fetch_array( $res ) ) {

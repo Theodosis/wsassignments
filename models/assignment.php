@@ -1,5 +1,7 @@
 <?php
     class Assignment {
+        // function Get fetches an assignment by id, after deciding whether it is 
+        // active or not (on time limits).
         public static function Get( $id ) {
             $rows = db_select( 'assignment', compact( 'id' ) );
             if ( isset( $rows[ 0 ] ) ) {
@@ -10,12 +12,15 @@
             // else
             return null;
         }
+        // function Listing lists all available assignments.
         public static function Listing(){
             return db_array( '
             SELECT * FROM `assignment`
                 WHERE
                 start <= NOW();' );
         }
+        // function GetLast fetches the assignment with the higher id, after deciding 
+        // whether it is active or not (on time limits).
         public static function GetLast(){
             $last = db_array( "
                 SELECT * FROM `assignment`
@@ -30,6 +35,8 @@
             }
             return null;
         }
+        // function ListByUser is responsible to select the submission status for every assignment 
+        // for a user. It sets the submission status depending on the query results.
         public static function ListByUser( $id ){
             $results = db_array( "
                 SELECT * FROM (

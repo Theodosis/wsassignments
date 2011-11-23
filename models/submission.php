@@ -1,9 +1,11 @@
 <?php
     class Submission {
+        // function Listing lists all submissions, paginated by offset and limit.
         public static function Listing( $offset, $limit ) {
             return db_array( 'SELECT * FROM `submission` LIMIT :offset, :limit',
                         compact( 'offset', 'limit' ) );
         }
+        // function Create stores a new submission to the database.
         public static function Create( $assignmentid, $userid, $validationid, $comment = "" ) {
             $received = date( "Y-m-d H:i:s", time() );
             $submission = compact( 'assignmentid', 'userid', 'validationid', 'comment' );
@@ -11,10 +13,13 @@
             $submission[ 'id' ] = mysql_insert_id();
             return $submission;
         }
+        // function delete removes a submission from the database.
         public static function Delete( $id ) {
             return db_delete( 'submission', compact( 'id' ) );
         }
-
+        
+        // function ListByUserAndAssignment returns the submissions for 
+        // a user for an assignment.
         public static function ListByUserAndAssignment( $userid, $assignmentid ){
             $submission_list = db_array( "
                 SELECT `s`.`id`, `v`.`description` as status, `s`.`comment`, `s`.`created`, `v`.`id` as validationid FROM `submission` as s
@@ -23,6 +28,8 @@
                     ORDER BY `s`.created DESC LIMIT 0, 10; ", compact( 'userid', 'assignmentid' ) );
             return $submission_list;
         }
+        // function ListAllGroupped returns the submission status for all users, for 
+        // all assignments. Is used for administration reasons.
         public static function ListAllGroupped(){
             return db_array( "
                 SELECT
@@ -39,6 +46,8 @@
                     s2.id IS NULL AND s3.id IS NULL;
             " );
         }
+        // function UserResults returns the best result for a user for an assignment.
+        // also used for administration reasons.
         public static function UserResults( $userid, $assignmentid ){
             return db_array( "
                 SELECT v.description FROM submission as s

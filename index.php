@@ -14,11 +14,14 @@
 
     clude( 'models/user.php' );
 
+    // Avaliable controllers
     $controllerWhitelist = array( 'submission', 'session', 'dashboard', 'adminpanel' );
+    // available methods
     $methodWhitelist = array( 'view', 'listing', 'create', 'update', 'delete' );
     
-    $controller = @$_GET[ 'resource' ] or 'dashboard';
-    $method = @$_GET[ 'method' ] or 'view';
+
+    $controller = @$_GET[ 'resource' ] or 'dashboard'; // dashboard is the default controller
+    $method = @$_GET[ 'method' ] or 'view'; // view is the default method
     if ( !in_array( $controller, $controllerWhitelist ) ) {
         $controller = 'dashboard';
     }
@@ -26,6 +29,7 @@
         $method = 'view';
     }
     
+    // No visitors allowed. If not logged in redirect to session/view.
     if ( !isset( $_SESSION[ 'user' ] ) ) {
         $user = User::GetCookieData();
         if ( $user !== false ) {
@@ -33,16 +37,18 @@
         }
         else{
             $controller = "session";
-            $method == "create" or $method = "view";
+            $method == "create" or $method = "view"; //allow session/create for login
         }
     }
+    
+    // methods create, delete and update MUST use POST
 	if ( $method == 'create' || $method == 'delete' || $method == 'update' ) {
         if( $_SERVER[ 'REQUEST_METHOD' ] != 'POST' ){
             header( "Location: /" );
             die( 'Non-idempotent REST method cannot be applied with the idempotent HTTP request method "' . $_SERVER[ 'REQUEST_METHOD' ] . '". Redirecting to home...' );
         }
 
-		// check http referer
+		// check http referer. Only accept post requests by own domain
 		if ( !isset( $_SERVER['HTTP_REFERER' ] ) ) {
             // allow
 		}
@@ -62,8 +68,10 @@
 		}
 	}
     
+    // merge params and unset the original ones.
     $params = array_merge( $_GET, $_POST, $_FILES );
-    
+    unset( $_GET, $_POST, $_FILES );
+
     function clude( $path ) {
         static $included = array();
         if ( !isset( $included[ $path ] ) ) {
@@ -73,6 +81,8 @@
         return true;
     }
     
+    // include the appropriate controller
     clude( "controllers/$controller.php" );
+    // and call the specified method, passing all parameters
     call_user_func( array( $controller . "controller", $method ), $params );
 ?>

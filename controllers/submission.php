@@ -1,8 +1,12 @@
 <?php
 
     clude( 'models/submission.php' );
-
+    // class SubmissionController is responsible to handle the submission requests.
     class SubmissionController extends Controller {
+        // function Create checks the validity of the request by validating the parameters,
+        // and checks whether the referenced assignment is active.
+        // It sends a post request to the validation server, stores the results to the db 
+        // and outputs the dashboard/view view.
         public static function Create( $params ) {
             global $settings;
             global $user;
@@ -58,8 +62,12 @@
                     WHERE `id`=:id;', array( "id" => $results->validationid ) );
 
             $results->validation = $row[ 0 ][ 'description' ];
+            $controller = "dashboard";
             DashboardController::View( get_object_vars( $results ) );
         }
+        
+        // function Update is available only for administrators, and updates the 
+        // submission status for a user for an assignment.
         public static function Update( $params ) {
             clude( 'models/submission.php' );
             global $user;
@@ -70,6 +78,7 @@
                 Submission::Create( $params[ 'assignmentid' ], $params[ 'userid' ], $params[ 'validationid' ] );
             }
             $res = Submission::UserResults( $params[ 'userid' ], $params[ 'assignmentid' ] );
+            //TODO: write a view to output the description.
             echo $res[ 0 ][ 'description' ];
         }
         public static function Delete( $params ) {
