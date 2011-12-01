@@ -45,7 +45,7 @@
             curl_close( $ch );
             if( $results === NULL || !isset( $results->validationid ) ){
                 $results = (object) array(
-                    "validationid" => 23,
+                    "validationid" => 2,
                     "comment" => ""
                 );
             }

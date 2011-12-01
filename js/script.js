@@ -5,8 +5,8 @@ $( function(){
     $( '#exit' ).click( function(){
         var form = document.createElement( 'form' );
         form.action = "/session/delete";
-        form.method = "POST";
-        form.submit();
+        form.method = "post";
+        $( form ).appendTo( 'body' ).submit();
     });
     $( 'table' ).dataTable( {
         "iDisplayLength": 30,

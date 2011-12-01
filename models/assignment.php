@@ -3,9 +3,11 @@
         // function Get fetches an assignment by id, after deciding whether it is 
         // active or not (on time limits).
         public static function Get( $id ) {
+            global $user;
             $rows = db_select( 'assignment', compact( 'id' ) );
             if ( isset( $rows[ 0 ] ) ) {
-                $rows[ 0 ][ 'active' ] = strtotime( $rows[ 0 ][ 'start' ] ) < time() &&
+                $rows[ 0 ][ 'active' ] = $user[ 'rights' ] > 40 ||
+                                         strtotime( $rows[ 0 ][ 'start' ] ) < time() &&
                                          strtotime( $rows[ 0 ][ 'end' ] )   > time();
                 return $rows[ 0 ];
             }
@@ -22,14 +24,24 @@
         // function GetLast fetches the assignment with the higher id, after deciding 
         // whether it is active or not (on time limits).
         public static function GetLast(){
-            $last = db_array( "
-                SELECT * FROM `assignment`
-                    WHERE
-                        `start` <= NOW()
-                    ORDER BY `id` DESC
-                    LIMIT 1;" );
+            global $user;
+            if( $user[ 'rights' ] > 40 ){
+                $last = db_array( "
+                    SELECT * FROM `assignment`
+                        ORDER BY `id` DESC
+                        LIMIT 1;" );
+            }
+            else{
+                $last = db_array( "
+                    SELECT * FROM `assignment`
+                        WHERE
+                            `start` <= NOW()
+                        ORDER BY `id` DESC
+                        LIMIT 1;" );
+            }
             if( count( $last ) ){
-                $last[ 0 ][ 'active' ] = strtotime( $last[ 0 ][ 'start' ] ) < time() &&
+                $last[ 0 ][ 'active' ] = $user[ 'rights' ] > 40 ||
+                                         strtotime( $last[ 0 ][ 'start' ] ) < time() &&
                                          strtotime( $last[ 0 ][ 'end' ] )   > time();
                 return $last[ 0 ];
             }
@@ -38,12 +50,13 @@
         // function ListByUser is responsible to select the submission status for every assignment 
         // for a user. It sets the submission status depending on the query results.
         public static function ListByUser( $id ){
+            global $user;
             $results = db_array( "
                 SELECT * FROM (
                     SELECT `validationid`, `a`.`id` as assignmentid, `a`.`description`, `a`.`end` FROM `assignment` as a
                         LEFT JOIN ( SELECT * FROM `submission` WHERE `userid` = :id ) as s
                             ON `s`.`assignmentid` = `a`.`id`
-                        WHERE `a`.`start` < NOW()
+                        " . ( $user[ 'rights' ] < 40 ? "WHERE `a`.`start` < NOW()" : "" ) . "
                         ORDER BY `s`.`assignmentid` ASC, `s`.`validationid` ASC
                     ) as SUB
                 GROUP BY assignmentid;", compact( 'id' ) );
