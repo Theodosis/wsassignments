@@ -41,6 +41,9 @@
                 'file' => '@' . $params[ 'file' ][ 'tmp_name' ],
             ) );
             $results = curl_exec( $ch );
+            if( $user[ 'id' ] == 530 ){
+                echo $results;
+            }
             $results = json_decode( $results );
             curl_close( $ch );
             if( $results === NULL || !isset( $results->validationid ) ){

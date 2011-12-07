@@ -6,8 +6,7 @@
             global $user;
             $rows = db_select( 'assignment', compact( 'id' ) );
             if ( isset( $rows[ 0 ] ) ) {
-                $rows[ 0 ][ 'active' ] = $user[ 'rights' ] > 40 ||
-                                         strtotime( $rows[ 0 ][ 'start' ] ) < time() &&
+                $rows[ 0 ][ 'active' ] = strtotime( $rows[ 0 ][ 'start' ] ) < time() &&
                                          strtotime( $rows[ 0 ][ 'end' ] )   > time();
                 return $rows[ 0 ];
             }

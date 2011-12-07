@@ -4,7 +4,7 @@
             global $user;
             clude( 'controllers/submission.php' );
             clude( 'models/validation.php' );
-            if( $user[ 'rights' ] < 40 ){
+            if( $user[ 'rights' ] < 50 ){
                 header( 'HTTP/1.1 403 Forbidden' );
                 exit();
             }
