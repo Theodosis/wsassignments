@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" >
+	<head>
+		<title>Second Example</title>
+		<style type="text/css">
+            body {
+                font: 18px verdana, serif;
+            }
+            div{
+                width: 800px;
+                margin: auto;
+            }
+            p {
+                margin: 10px;
+                margin-bottom: 50px;
+                padding: 10px;
+                border: medium double black;
+            }
+			ul li {
+				width: 150px;
+				height: 20px;
+				
+				float: left;
+				
+				padding: 5px;
+				border: 1px solid black;
+				background: #444;
+				
+				color: white;
+				font-family: sans-serif;
+				text-align: center;
+				
+				list-style: none;
+			}
+			#menu li {
+				position: relative;
+			}
+			#menu li:hover ul {
+				display: block;
+			}
+			.submenu {
+				display: none;
+				position: absolute;
+				
+				top: 30px;
+				left: 0;
+				
+				margin: 0;
+				padding: 0;
+			}
+            p{
+                clear: both;
+            }
+		</style>
+		<meta http-equiv="Content-Type"	content="text/html; charset=utf-8;"	/>
+	</head>
+	<body>
+        <div>
+            <p>
+                Το συγκεκριμένο παράδειγμα εμφανίζει την χρησιμότητα του "display: none;" και 
+                "display: block;". Όταν μεταβαίνουμε πάνω από την λέξη "Υπηρεσίες", μας ανοίγει 
+                ένα νέο "drop-down" menu. Χρησιμοποιείται κατά κόρον από τις περισσότερες 
+                γνωστές ιστοσελίδες.
+            </p>
+            <ul id="menu">
+                <li>Αρχικη</li>
+                <li>Υπηρεσίες
+                    <ul class="submenu">
+                        <li>Υπηρεσία 1</li>
+                        <li>Υπηρεσία 2</li>
+                        <li>Υπηρεσία 3</li>
+                    </ul>
+                </li>
+                <li>Ποιοι είμαστε</li>
+                <li>Επικοινωνία</li>
+            </ul>
+        </div>
+	</body>
+</html>

@@ -1,0 +1,16 @@
+div#init{
+    background-color: #fff;
+    filter: alpha(opacity=80);
+}
+.stars, .smogs{
+    display: none;
+}
+.night .stars, .night .smogs{
+    display: block;
+}
+div.doorlight{
+    display: none;
+}
+body.load div.doorlight{
+    display: none;
+}

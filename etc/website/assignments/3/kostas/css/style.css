@@ -1,0 +1,96 @@
+body {
+	width:869px;
+	margin-top:0px;
+	margin-left:auto;
+	margin-right:auto;
+	font-family:Arial,sans-serif;
+}
+h1 {
+	margin-top:0px;
+	margin-bottom:0px;
+	padding-top:15px;
+	padding-bottom:12px;
+	padding-left:40px;
+	background-color:#B52D22;
+	color:#FFF;
+}
+h2 {
+	margin-top:0px;
+}
+div#header {
+	height:340px;
+	background-color:#C6E4EA;
+	color:#B52D22;
+	background-image:url("../images/dude.png");
+	background-repeat:no-repeat;
+	background-position:right bottom;
+}
+div#header p, div#header h2 {
+	width:450px;
+	padding-left:39px;
+}
+div#header h2 {
+	padding-top:70px;
+	text-align:justify;
+	line-height:32px;
+}
+div#header p {
+	margin-top:0px;
+	padding-top:11px;
+	font-size:16px;
+	text-align:justify;
+	line-height:21px;
+}
+div.story {
+	padding-top:20px;
+	width:288px;
+	height:320px;
+	background-color:#F8F8F8;
+	float:left;
+	border-color:#DDD;
+	border-style:solid;
+	border-width:1px 0px;
+}
+div.story h2, div.story p, div.story img {
+	width:249px;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	color:#333;
+}
+div.story h2 {
+	font-size:14px;
+	margin-top:19px;
+	font-weight:bold;
+}
+div.story p {
+	font-size:12px;
+	text-align:justify;
+	line-height:16px;
+	margin-top:16px;
+}
+div.story .link {
+	margin-top:12px;
+	color:#551A8B;
+	text-align:left;
+}
+div.left_story {
+	border-left-width:1px;
+}
+div.center_story {
+	width:289px;
+	border-left-width:1px;
+	border-right-width:1px;
+}
+div.right_story {
+	border-right-width:1px;
+}
+div#footer {
+	clear:both;
+	padding-top:12px;
+	text-align:center;
+	color:#AAA;
+}
+div#footer p {
+	margin-top:0px;
+}

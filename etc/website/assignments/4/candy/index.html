@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>Candy!</title>
+        <style type="text/css">
+            body{
+                background: #9af;
+            }
+            input{
+                font-size: 1em;
+                margin-bottom: 5px;
+                padding: 4px;
+                text-align: center;
+            }
+            input[type=submit]{
+                background: #F9F;
+                border-radius: 10px;
+            }
+            form{
+                float: left;
+                width: 300px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Candy!!</h1>
+        <form method="get" action="print.php.txt">
+            <div><input type="text" name="candy[]" value="haribo" /></div>
+            <div><input type="text" name="candy[]" value="lolipop" /></div>
+            <div><input type="text" name="candy[]" value="smarties" /></div>
+            <div><input type="text" name="candy[]" value="M&amp;Ms" /></div>
+            <div><input type="text" name="candy[]" value="canes" /></div>
+            <div><input type="text" name="candy[]" value="snickers" /></div>
+            <div><input type="text" name="candy[]" value="rolo" /></div>
+            <div><input type="submit" value="yayyyy!" /></div>
+        </form>
+        <pre>
+        &lt;form method="get" action="print.php"&gt;
+            &lt;div&gt;&lt;input type="text" name="candy[]" value="haribo" /&gt;&lt;/div&gt;
+            &lt;div&gt;&lt;input type="text" name="candy[]" value="lolipop" /&gt;&lt;/div&gt;
+            &lt;div&gt;&lt;input type="text" name="candy[]" value="smarties" /&gt;&lt;/div&gt;
+            &lt;div&gt;&lt;input type="text" name="candy[]" value="M&amp;Ms" /&gt;&lt;/div&gt;
+            &lt;div&gt;&lt;input type="text" name="candy[]" value="canes" /&gt;&lt;/div&gt;
+            &lt;div&gt;&lt;input type="text" name="candy[]" value="snickers" /&gt;&lt;/div&gt;
+            &lt;div&gt;&lt;input type="text" name="candy[]" value="rolo" /&gt;&lt;/div&gt;
+            &lt;div&gt;&lt;input type="submit" value="yayyyy!" /&gt;&lt;/div&gt;
+        &lt;/form&gt;
+        </pre>
+    </body>
+</html>

@@ -1,0 +1,57 @@
+.stars, .smogs{
+    display: none;
+}
+.night .stars, .night .smogs{
+    display: block;
+}
+.smogs .smog.smog2{ 
+    top: 71%;
+    left: 84.2%;
+    width: 0.6%;
+    filter: alpha(opacity=1);
+}
+.smogs .smog.smog3{ 
+    top: 70%;
+    left: 84.2%;
+    width: 1%;
+    filter: alpha(opacity=80);
+}
+.smogs .smog.smog4{ 
+    top: 69%;
+    left: 84.5%;
+    width: 1.4%;
+    filter: alpha(opacity=70);
+}
+.smogs .smog.smog5{
+    top: 68%;
+    left: 85%;
+    width: 1.8%;
+    filter: alpha(opacity=60);
+}
+.smogs .smog.smog6{
+    top: 67%;
+    left: 85.5%;
+    width: 2.5%;
+    filter: alpha(opacity=40);
+}
+.smogs .smog.smog7{
+    top: 66%;
+    left: 86%;
+    width: 2.5%;
+    filter: alpha(opacity=30);
+}
+.smogs .smog.smog8{
+    top: 65%;
+    left: 86.6%;
+    width: 2.5%;
+    filter: alpha(opacity=20);
+}
+.smogs .smog.smog9{
+    top: 64%;
+    left: 87%;
+    width: 2.5%;
+    filter: alpha(opacity=10);
+}
+.smog1, .smog10{
+    display: none;
+}

@@ -1,0 +1,154 @@
+#home, #about, #lectures, #more, #assignments{
+    font-size: 0.8em;
+}
+.x-html h2{
+    font-size: 1.4em;
+    margin: 0.75em 0 0 0;
+}
+.x-html h3{
+    font-size: 1.2em;
+    margin: 0.25em 0 0 0;
+}
+.x-html h4{
+    font-size: 1.1em;
+    margin: 0.25em 0 0 0;
+}
+.x-toolbar{
+    font-size: 80%;
+}
+.x-toolbar .x-button{
+    font-size: 120%;
+}
+.x-html ol li{
+    list-style-type: circle;
+}
+#home .x-toolbar{
+    font-size: 80%;
+}
+#home .date{
+    color: #999;
+}
+#home ul{
+    margin: 0;
+    padding: 0;
+    
+}
+#home li{
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px dotted #333;
+    list-style: none;
+}
+#about{
+    text-align: justify;
+}
+#about ul.speakers li{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#about h3{
+    font-size: 1em;
+}
+#about h4{
+    font-size: 1em;
+}
+#reference h2{
+    display: none;
+}
+#faq .x-list{
+    font-size: 80%;
+}
+.faqentry div.x-panel-body{
+    text-align: center;
+    padding: 0 20px;
+}
+.faqentry div.x-panel-body h3{
+    color: green;
+    font-weight: bold;
+    margin: 10px;
+}
+.faqentry div.x-panel-body .x-scroller div{
+    font-size: 80%;
+}
+.faqentry ul li{
+    text-align: left;
+    margin-top: 10px;
+}
+.faqentry ul li:before{
+    content: "✔";
+    display: block;
+    float: left;
+    margin-right: 5px;
+    color: green;
+}
+#tweets .avatar{
+    width: 48px;
+    height: 48px;
+    float: left;
+    margin-right: 10px;
+}
+#tweets .tweet strong{
+    font-size: 1em;
+    font-weight: bold;
+    color: #5D7797;
+}
+#tweets .tweet{
+    font-size: 0.8em;
+}
+#tweets .tweet .link{
+    text-decoration: underline;
+    color: #06C;
+}
+.x-tab{
+    float: left;
+}
+img.about{
+    -o-mask-image: url(http://webseminars.ee.auth.gr/images/icons/pencil.png);
+    -moz-mask-image: url(http://webseminars.ee.auth.gr/images/icons/pencil.png);
+    -webkit-mask-image: url(http://webseminars.ee.auth.gr/images/icons/pencil.png);
+}
+img.lectures{
+    -o-mask-image: url(http://webseminars.ee.auth.gr/images/icons/presentation.png);
+    -moz-mask-image: url(http://webseminars.ee.auth.gr/images/icons/presentation.png);
+    -webkit-mask-image: url(http://webseminars.ee.auth.gr/images/icons/presentation.png);
+}
+img.assignments{
+    -o-mask-image: url(http://webseminars.ee.auth.gr/images/icons/hw.png);
+    -moz-mask-image: url(http://webseminars.ee.auth.gr/images/icons/hw.png);
+    -webkit-mask-image: url(http://webseminars.ee.auth.gr/images/icons/hw.png);
+}
+img.faq{
+    -o-mask-image: url(http://webseminars.ee.auth.gr/images/icons/faq.png);
+    -moz-mask-image: url(http://webseminars.ee.auth.gr/images/icons/faq.png);
+    -webkit-mask-image: url(http://webseminars.ee.auth.gr/images/icons/faq.png);
+}
+img.reference{
+    -o-mask-image: url(http://webseminars.ee.auth.gr/images/icons/books.png);
+    -moz-mask-image: url(http://webseminars.ee.auth.gr/images/icons/books.png);
+    -webkit-mask-image: url(http://webseminars.ee.auth.gr/images/icons/books.png);
+}
+
+#lectures h2{
+    display: none;
+}
+#lectures ol > li{
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px dotted #333;
+}
+#lectures p{
+    padding: 0;
+    margin: 0;
+}
+#videos div.thumb{
+    height: 45px;
+    width: 60px;
+    margin-right: 20px;
+    float: left;
+    background-repeat: none;
+    background-size: 60px;
+}
+#videos span.name{
+    line-height: 45px;
+}

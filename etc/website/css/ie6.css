@@ -1,0 +1,42 @@
+body{
+    background: url(../images/iebg.jpg) center top no-repeat;
+}
+img{
+    display: none;
+}
+.blackboard img{
+    display: block;
+}
+.sky{
+    display: none;
+}
+.ground{
+    display: none;
+}
+.doorlight{
+    display: none;
+}
+.nightoverlay{
+    display: none;
+}
+div#init{
+    background-color: #fffffe;
+    filter: alpha(opacity=80);
+}
+div.blackboard.about h3{
+    font-size: 15px;
+}
+div.blackboard h4{
+    font-size: 13px;
+}
+.blackboard .scroll{
+    color: white!important;
+    filter: alpha(opacity=70);
+}
+.blackboard a{
+    color: white!important;
+}
+.navcont .nav li a{
+    width: 50px;
+    height: 50px;
+}

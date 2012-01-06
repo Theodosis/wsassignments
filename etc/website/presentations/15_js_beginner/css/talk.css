@@ -1,0 +1,70 @@
+@font-face{
+    font-family:IQFONT-bold;
+    src:url(../fonts/IQFONT-bold.otf);
+}
+
+h1, h2{
+	text-align: center;
+    font-family: IQFONT-bold, Arial;
+    font-size: 8em;
+    line-height: 1em;
+}
+header h2{
+    font-size: 4em;
+}
+h2{
+    font-size: 2em;
+}
+
+#intro {
+	background: rgba(0,0,0,.7);
+	padding: 0;
+	border: 0;
+}
+
+#intro h1 {
+    margin: 100px auto;
+}
+
+
+
+#intro .attribution {
+	font-family: Helvetica, sans-serif;
+	font-weight: bold;
+	text-align: center;
+	font-size: 100%;
+	line-height: .7;
+	color: rgba(0,0,0,.9);
+	text-shadow: none;
+	background: url(../img/layers.jpg) 0 800px;
+	padding:.6em 0 0;
+	overflow: hidden;
+}
+
+
+#css-controls-demo label {
+	display: block;
+}
+
+table{
+    background: white;
+    margin: auto;
+}
+th{
+    background: #93A299;
+    padding: 0 20px;
+    text-align: left;
+}
+td{
+    color: #333;
+    padding: 0 30px;
+}
+tr:nth-child(even) td{
+    background: #EEF0EF;
+}
+tr:nth-child(odd) td{
+    background: #DEC0DE;
+}
+span[onclick]{
+    cursor: pointer;
+}

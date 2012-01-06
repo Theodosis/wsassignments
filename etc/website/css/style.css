@@ -1,0 +1,914 @@
+@-moz-keyframes travel{
+    from{ left: -30%; }
+    to{ left: 100%; }
+}
+@-webkit-keyframes travel{
+    from{ left: -16%; }
+    to{ left: 100%; }
+}
+
+@-moz-keyframes flickr{
+    0%,10%{ -moz-transform: scale(1); opacity: 0.8; }
+    5%{ -moz-transform: scale(1.6); opacity: 1; }
+}
+@-webkit-keyframes flickr{
+    0%,10%{ -webkit-transform: scale(1); opacity: 0.8; }
+    5%{ -webkit-transform: scale(1.6); opacity: 1; }
+}
+
+@-moz-keyframes smog{
+    0%{
+        top: 73%;
+        left: 84.2%;
+        opacity: 0;
+        width: 0.4%;
+    }
+    10%{ 
+        top: 72%;
+        left: 84.2%;
+        width: 0.6%;
+        opacity: 1;
+    }
+    40%{ 
+        top: 69%;
+        left: 84.7%;
+        width: 1%;
+        opacity: 0.8;
+    }
+    70%{ 
+        top: 67%;
+        left: 85%;
+        width: 1.4%;
+        opacity: 0.5;
+    }
+    90%{
+        top: 65%;
+        left: 86%;
+        width: 1.8%;
+        opacity: 0.2;
+    }
+    100%{
+        top: 63%;
+        left: 87%;
+        width: 2.5%;
+        opacity: 0;
+    }
+}
+@-webkit-keyframes smog{
+    0%{
+        top: 73%;
+        left: 84.2%;
+        opacity: 0;
+        width: 0.4%;
+    }
+    10%{ 
+        top: 72%;
+        left: 84.2%;
+        width: 0.6%;
+        opacity: 1;
+    }
+    40%{ 
+        top: 69%;
+        left: 84.7%;
+        width: 1%;
+        opacity: 0.8;
+    }
+    70%{ 
+        top: 67%;
+        left: 85%;
+        width: 1.4%;
+        opacity: 0.5;
+    }
+    90%{
+        top: 65%;
+        left: 86%;
+        width: 1.8%;
+        opacity: 0.2;
+    }
+    100%{
+        top: 63%;
+        left: 87%;
+        width: 2.5%;
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes bounce{
+   0%{ bottom: 100%; }
+    70%{ bottom: -5%; }
+    85%{ bottom: 2%; }
+    100%{ bottom: 0; }
+}
+@-webkit-keyframes bounce{
+   0%{ bottom: 100%; }
+    70%{ bottom: -5%; }
+    85%{ bottom: 2%; }
+    100%{ bottom: 0; }
+}
+
+@font-face{
+    font-family:MetaWebPro-Black;
+    src:url(../fonts/MetaWebPro-Black.woff) format('woff');
+}
+
+.eof{
+    clear: both;
+}
+p, ul, li{
+    margin: 0;
+}
+h1, h2, h3, h4{
+    font-family: "MetaWebPro-black", "Arial black";
+    font-weight: normal;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.in{
+    -o-transition: opacity 4s;
+    -moz-transition: opacity 4s;
+    -webkit-transition: opacity 4s;
+    opacity: 0;
+}
+.in.load{
+    opacity: 1;
+}
+
+
+body{
+    font-family: Calibri, Arial;
+    color: #454545;
+    overflow: hidden;
+    margin: 0;
+    cursor: default!important;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.sky{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: url(../images/sky.png) repeat-x;
+    background-color: #0066e4;
+    background-image: -o-linear-gradient( top, rgba(0,0,0,0.4), rgba(255,255,255,0.2) );
+    background-image: -moz-linear-gradient( top, rgba(0,0,0,0.4), rgba(255,255,255,0.2) );
+    background-image: -webkit-gradient( linear, 0 0, 0 100%, from(rgba(0,0,0,0.4)), to(rgba(255,255,255,0.2)) );
+    -o-transition: background-color 1s;
+    -moz-transition: background-color 1s;
+    -webkit-transition: background-color 1s;
+}
+.night .sky{
+   background-color: #002070;
+}
+.ground{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30%;
+    background: url(../images/ground.png) right top no-repeat;
+    background-size: 101%;
+    -moz-background-size: 101%;
+    z-index: 700;
+}
+.nightoverlay{
+    position: absolute;
+    z-index: 800;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    -o-transition: opacity 2s;
+    -moz-transition: opacity 2s;
+    -webkit-transition: opacity 2s;
+    background: black;
+}
+body.night .nightoverlay{
+    opacity: 0.3;
+}
+
+img.sun, img.moon{
+    top: 8%;
+    left: 32%;
+    width: 10%;
+    z-index: 10;
+    -o-transition: top 1s;
+    -moz-transition: top 1s;
+    -webkit-transition: top 1s;
+}
+body.night img.sun{
+    top: 75%;
+}
+img.moon{
+    top: 75%;
+    width: 3%;
+}
+body.night img.moon{
+    top: 8%;
+}
+.stars{
+    opacity: 0;
+    -o-transition: opacity 2s;
+    -moz-transition: opacity 2s;
+    -webkit-transition: opacity 2s;
+}
+body.night .stars{
+    opacity: 1;
+}
+.star{
+    position: absolute;
+    opacity: 0.8;
+}
+.delay .star.flickr{
+    -moz-animation-name: flickr;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    -moz-animation-duration: 10s;
+    -moz-animation-delay: 0;
+    -webkit-animation-name: flickr;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-duration: 10s;
+    -webkit-animation-delay: 0;
+}
+
+.doorlight{
+    position: absolute;
+    top: 73%;
+    left: 81%;
+    height: 6%;
+    width: 3%;
+    z-index: 100;
+    background: #475d60;
+    -o-transition: background 1s;
+    -moz-transition: background 1s;
+    -webkit-transition: background 1s;
+    display: none;
+}
+body.night .doorlight{
+    background: #FFED29;
+}
+body.load .doorlight{
+    display: block;
+}
+
+.modal{
+    position: absolute;
+    z-index: 1000;
+    bottom: 50px;
+    width: 100%;
+}
+#init{
+    position: relative;
+    width: 670px;
+    margin: 10px auto;
+    border-radius: 100%;
+    -o-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -webkit-border-radius: 100%;
+    box-shadow: 0 0 5px 5px #333;
+    -o-box-shadow: 0 0 5px 5px #333;
+    -moz-box-shadow: 0 0 5px 5px #333;
+    -webkit-box-shadow: 0 0 5px 5px #333;
+    padding: 40px 60px 50px;
+    background: white;
+    background: rgba(255,255,255,0.7);
+    text-align:center;
+}
+#init h1{
+    margin: 10px 0 30px 0;
+}
+#init p{
+    margin: 0;
+}
+#init ul{
+    margin: 0;
+    text-align: left;
+}
+#init li{
+    line-height: 24px;
+    list-style: none;
+}
+#init .date{
+    color: #888;
+    float: left;
+}
+#init .text{
+    display: block;
+    margin-left: 50px;
+}
+#init a{
+    color: #454545;
+}
+#init a.qm{
+    text-decoration: none;
+    color: #777;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px #aaa;
+}
+
+.blackboard{
+    position: absolute;
+    bottom: 100%;
+    z-index: 1100;
+    text-align: center;
+    -o-transition: bottom 1s ease-in-out;
+    -moz-transition: bottom 1s ease-in-out;
+    -webkit-transition: bottom 1s ease-in-out;
+    width: 100%;
+    height: 700px;
+    overflow: hidden;
+}
+.blackboard.more{
+    -moz-transition: none;
+    -moz-animation-name: bounce;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-timing-function: ease-in-out;
+    -moz-animation-duration: 1s;
+    -webkit-transition: none;
+    -webkit-animation-name: bounce;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-duration: 1s;
+    bottom: 0;
+}
+
+.blackboard .content{
+    background-image: url(../images/bbframe.png);
+    width: 860px;
+    height: 560px;
+    padding: 70px;
+    margin: auto;
+    color: white;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5em;
+    text-align: left;
+    position: relative;
+}
+.blackboard .content .scroll{
+    height: 560px;
+    width: 860px;
+    overflow: hidden;
+}
+.blackboard.reference .content{
+    background-color: #402000;
+}
+.blackboard.lectures .content{
+    background-color: #402050;
+}
+.blackboard.assignments .content{
+    background-color: #117558;
+}
+.blackboard.about .content{
+    background-color: #111;
+    color: #999;
+}
+.blackboard.faq .content{
+    background-color: #448;
+}
+
+body.small .blackboard{
+    height: 527px;
+}
+body.small .blackboard .content{
+    width: 675px;
+    height: 389px;
+    background-image: url(../images/bbframesmall.png);
+    padding: 70px 40px;
+}
+body.small .blackboard .content .scroll{
+    width: 675px;
+    height: 390px;
+}
+
+.blackboard.about .content a{
+    color: #999;
+}
+.blackboard.about h1{
+    margin-bottom: 30px;
+}
+.blackboard.about ul{
+    padding: 0;
+    list-style: none;
+}
+.blackboard.about li{
+    width: 410px;
+    font-size: 70%;
+    line-height: 1.2em;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 20px;
+    padding-right: 20px;
+}
+.blackboard.about .speakers li{
+    float: left;
+}
+.blackboard.about li a{
+    text-decoration: none;
+}
+.blackboard.about li img{
+    float: left;
+    margin-right: 10px;
+    box-shadow: 0 0 6px 0 #666;
+    width: 140px;
+    height: 160px;
+}
+.blackboard.about h3{
+    margin: 5px 0;
+    font-size: 15px;
+    font-weight: normal;
+}
+.blackboard.about h3 a.tt{
+    padding: 8px 15px;
+    background: url(../images/icons/tt.png) no-repeat center;
+}
+.blackboard.about h4{
+    color: #666;
+    margin: 5px 0;
+}
+.blackboard.about .speakers p{
+    margin-left: 150px;
+}
+.blackboard.about .team p{
+    margin-top: 10px;
+}
+
+.blackboard.lectures ol.inclist{
+    list-style: none;
+    counter-reset: presentation;
+}
+.blackboard.lectures ol.inclist > li:before{
+    content: "Παρουσίαση " counter(presentation) "η. ";
+    counter-increment: presentation;
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    float: left;
+    margin-right: 5px;
+}
+.blackboard.lectures ol.inclist.compatibility > li:before{
+    display: none;
+}
+.blackboard.lectures ol.inclist h3 span{
+    font-size: 22px;
+    font-weight: bold;
+    padding-right: 5px;
+}
+.blackboard.lectures ol.inclist li h3{
+    font-size: 20px;
+    font-weight: normal;
+    font-family: Calibri,Arial;
+}
+.blackboard.lectures ol.inclist li .material{
+    margin-left: 25px;
+}
+.blackboard.lectures ol.inclist li p{
+    margin: 6px 0 6px 25px;
+}
+.blackboard.lectures ol.inclist li p.where{
+    font-size: 14px;
+}
+.blackboard.lectures ol.inclist li p.reference{
+    color: white;
+}
+.blackboard.lectures ol.inclist li.featured{
+    color: #6f6;
+}
+.blackboard.lectures ol.inclist li.featured:before{
+    color: #6f6;
+}
+.blackboard.lectures ol.inclist li.featured a{
+    color: #6f6;
+}
+.blackboard.lectures ol.howto{
+    font-size: 0.8em;
+    margin-left: 30px;
+    line-height: 1.1em;
+}
+
+.blackboard.assignments ol.inclist{
+    list-style: none;
+    counter-reset: assignments;
+}
+.blackboard.assignments ol.inclist > li:before{
+    content: "Εργασία " counter(assignments) "η. ";
+    counter-increment: assignments;
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    float: left;
+    margin-right: 5px;
+}
+.blackboard.assignments ol.inclist.compatibility > li:before{
+    display: none;
+}
+.blackboard.assignments ol.inclist h3 span{
+    font-size: 22px;
+    font-weight: bold;
+    padding-right: 5px;
+}
+.blackboard.assignments ol li h3{
+    font-size: 20px;
+    font-weight: normal;
+    font-family: Calibri,Arial;
+}
+.blackboard.assignments ol li p{
+    margin: 6px 0 6px 25px;
+}
+.blackboard.assignments strong{
+    color: white;
+}
+.blackboard.assignments em{
+    font-style: normal;
+    font-weight: bold;
+}
+.blackboard.assignments ul li{
+    list-style-image: url(../images/check.png);
+}
+.blackboard.assignments .questionlist h3, .blackboard.assignments .questionlist div{
+    font-size: 80%;
+    font-family: monospace;
+}
+.blackboard.assignments .questionlist pre{
+    margin: 0.5em 0;
+}
+.blackboard.assignments ol li.select{
+    color: #3F4;
+}
+.blackboard.assignments ol li.select.optional:after{
+    content: " (Προαιρετική)";
+}
+.blackboard.assignments ol li.insert{
+    color: #2dd;
+}
+.blackboard.assignments ol li.update{
+    color: #dd2;
+}
+.blackboard.assignments ol li.delete{
+    color: #f55;
+}
+.blackboard.assignments .easy strong{
+    color: #3F4;
+}
+.blackboard.assignments .medium strong{
+    color: #2dd;
+}
+.blackboard.assignments .hard strong{
+    color: #dd2;
+}
+.blackboard.assignments .pro strong{
+    color: #f55;
+}
+
+.blackboard ol > li.hidden > *{
+    display: none;
+}
+.blackboard ol > li.hidden > h3{
+    display: block;
+}
+.blackboard ol > li.done h3:after {
+content: "✓";
+padding-left: 15px;
+color: #6F6;
+}
+.blackboard ol > li > h3{
+    cursor: pointer;
+}
+
+
+
+ul.questionlist > li{
+    list-style: none!important;
+    padding-right: 20px;
+    clear: both;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+}
+ul.questionlist > li:before{
+    content: "+";
+    float: left;
+    margin-right: 5px;
+    display: block;
+    width: 20px;
+    cursor: pointer;
+}
+ul.questionlist > li.open:before{
+    content: "—";
+}
+ul.questionlist h3{
+    cursor: pointer;
+    margin: 0;
+    font-size: 18px;
+    padding-left: 25px;
+}
+ul.questionlist li div{
+    overflow: hidden;
+    height: 0;
+    opacity: 0;
+    margin: 0 0 10px 30px;
+    text-align: justify;
+    font-weight: normal;
+    font-size: 16px;
+    -o-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    -webkit-transition: all 0.1s linear;
+    
+}
+ul.questionlist .open div{
+    height: auto;
+    opacity: 1;
+}
+
+
+.blackboard .exit{
+    position: absolute;
+    bottom: 7%;
+    right: 7%;
+    color: white;
+    text-decoration: none;
+    z-index: 1200;
+    width: 50px;
+    height: 28px;
+    background: url(../images/icons/right.png) no-repeat 0 0;
+}
+.blackboard h1{
+    margin-top: 25px;
+    line-height: 100%;
+}
+.blackboard h2{
+    margin-top: 20px;
+    
+}
+.blackboard p{
+    margin-top: 20px;
+    text-align: justify;
+}
+.blackboard .content a{
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: bold;
+}
+.blackboard .content h3 a{
+    font-weight: normal;
+}
+
+.icons img{
+    position: absolute;
+    z-index: 100;
+}
+
+.smogs{
+    opacity: 0;
+    -o-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    -webkit-transition: opacity 1s;
+}
+.night .smogs{
+    opacity: 1;
+}
+.smogs .smog{
+    top: 69%;
+    left: 84%;
+    width: 1.7%;
+    -moz-animation-name: smog;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    -moz-animation-duration: 3s;
+    -webkit-animation-name: smog;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-duration: 3s;
+}
+
+.cloud1{
+    top: 1%;
+    left: 22%;
+    width: 15%;
+}
+.cloud2{
+    top: 21%;
+    left: 31%;
+    width: 12%;
+}
+.cloud3{
+    top: 12%;
+    left: 36%;
+    width: 9%;
+}
+.cloud4{
+    top: 32%;
+    left: 47%;
+    width: 13%;
+}
+.cloud5{
+    top: 7%;
+    left: 62%;
+    width: 7%;
+}
+.cloud6{
+    top: 16%;
+    left: 77%;
+    width: 12%;
+}
+.cloud7{
+    top: 22%;
+    left: 82%;
+    width: 14%;
+}
+.cloud8{
+    top: 24%;
+    left: 51%;
+    width: 15%;
+}
+.cloud9{
+    top: 20%;
+    left: 10%;
+    width: 16%
+}
+
+.travel{
+    -moz-animation-name: travel;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    -webkit-animation-name: travel;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+}
+.a6{
+    -moz-animation-duration: 60s;
+    -webkit-animation-duration: 60s;
+}
+.a7{
+    -moz-animation-duration: 70s;
+    -webkit-animation-duration: 70s;
+}
+.a8{
+    -moz-animation-duration: 80s;
+    -webkit-animation-duration: 80s;
+}
+.a9{
+    -moz-animation-duration: 90s;
+    -webkit-animation-duration: 90s;
+}
+.a10{
+    -moz-animation-duration: 100s;
+    -webkit-animation-duration: 100s;
+}
+.a11{
+    -moz-animation-duration: 110s;
+    -webkit-animation-duration: 110s;
+}
+.a12{
+    -moz-animation-duration: 120s;
+    -webkit-animation-duration: 120s;
+}
+.a13{
+    -moz-animation-duration: 130s;
+    -webkit-animation-duration: 130s;
+}
+.a14{
+    -moz-animation-duration: 140s;
+    -webkit-animation-duration: 140s;
+}
+.a15{
+    -moz-animation-duration: 150s;
+    -webkit-animation-duration: 150s;
+}
+.a16{
+    -moz-animation-duration: 160s;
+    -webkit-animation-duration: 160s;
+}
+.a17{
+    -moz-animation-duration: 170s;
+    -webkit-animation-duration: 170s;
+}
+.a18{
+    -moz-animation-duration: 180s;
+    -webkit-animation-duration: 180s;
+}
+.a19{
+    -moz-animation-duration: 190s;
+    -webkit-animation-duration: 190s;
+}
+.a20{
+    -moz-animation-duration: 200s;
+    -webkit-animation-duration: 200s;
+}
+.a21{
+    -moz-animation-duration: 210s;
+    -webkit-animation-duration: 210s;
+}
+
+.d1{
+    -moz-animation-delay: -10s;
+    -webkit-animation-delay: -10s;
+}
+.d4{
+    -moz-animation-delay: -40s;
+    -webkit-animation-delay: -40s;
+}
+.d7{
+    -moz-animation-delay: -70s;
+    -webkit-animation-delay: -70s;
+}
+.d10{
+    -moz-animation-delay: -100s;
+    -webkit-animation-delay: -100s;
+}
+.d13{
+    -moz-animation-delay: -130s;
+    -webkit-animation-delay: -130s;
+}
+.d16{
+    -moz-animation-delay: -160s;
+    -webkit-animation-delay: -160s;
+}
+
+
+.navcont{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 4000;
+}
+.nav{
+    list-style: none;
+    text-align: center;
+}
+.nav li{
+    display: inline;
+    position: relative;
+}
+.nav a{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    /* 
+     * -o-transition: all 0.1s linear;
+     * Intentionally commented out, as Opera does not handle background-size transitions well.
+     */
+
+    -moz-transition: all 0.1s linear;
+    -webkit-transition: all 0.1s linear;
+    background-size: 40px 40px;
+    line-height: 50px;
+    position: relative;
+    top: -15px;
+}
+.nav a:after{
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    display: block;
+    width: 100%;
+    box-shadow: 0 0 25px 10px rgba(0,0,0,0.4);
+    -o-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    -webkit-transition: all 0.1s linear;
+}
+.nav a:hover:after{
+    -o-transform: translate(0, 10px);
+    -moz-transform: translate(0, 10px);
+}
+.nav a:hover{
+    width: 50px;
+    height: 50px;
+    background-size: 50px 50px;
+}
+.nav .about{
+    background-image: url(../images/icons/pencil.png);
+}
+.nav .reference{
+    background-image: url(../images/icons/books.png);
+}
+.nav .lectures{
+    background-image: url(../images/icons/presentation.png);
+}
+.nav .assignments{
+    background-image: url(../images/icons/homework.png); 
+}
+.nav .faq{
+    background-image: url(../images/icons/faq.png);
+}
+.nav .twitter{
+    background-image: url(../images/icons/twitter.png);
+}
+.nav .facebook{
+    background-image: url(../images/icons/facebook.png);
+}
+.nav .forum{
+    background-image: url(../images/icons/forum.png);
+}
+.nav .youtube{
+    background-image: url(../images/icons/youtube.png);
+}

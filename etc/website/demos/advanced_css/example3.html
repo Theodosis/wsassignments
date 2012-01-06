@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" >
+	<head>
+		<title>Third Example</title>
+		<style type="text/css">
+            body {
+                font: 18px verdana, serif;
+            }
+            div{
+                width: 500px;
+                margin: auto;
+            }
+                
+            p#first {
+                margin: 10px;
+                margin-bottom: 50px;
+                padding: 10px;
+                border: medium double black;
+            }  
+            
+            p#nofloat {
+                clear: left;
+            }
+            img {
+                width: 200px;
+                height: 150px;
+                float: left;
+            }
+		</style>
+		<meta http-equiv="Content-Type"	content="text/html; charset=utf-8;"	/>
+	</head>
+	<body>
+        <div>
+            <p id="first">
+                Στο συγκεκριμένο παράδειγμα παρουσιάζεται η ιδιότητα "clear: left". 
+                Παίρνει αντίστοιχα τις τιμές "right", "both". Δηλώνοντάς τη, ορίζουμε
+                συγκεκριμένα στοιχεία να μην φέρουν floated στοιχεία αριστερά τους, 
+                δεξιά τους ή και στις δύο μεριές (εξαρτάται από την τιμή που θα του δώσουμε).
+            </p>
+            <img src="puppy1.jpg" alt="This is the first puppy!" />
+            <p>
+                Σαν στοιχείο που <strong>δεν</strong> έχω την ιδιότητα clear, 
+                "ρέω" κανονικά δίπλα από την εικόνα...
+            </p>
+            <p id="nofloat">
+                Δεν έχω αριστερά μου floated elements! Πηγαίνω από κάτω... 
+                Guess what! Εγώ φέρω την ιδιότητα clear! :-)
+            </p>
+        </div>
+	</body>
+</html>

@@ -1,0 +1,23 @@
+<FilesMatch "\.(ico|jpg|jpeg|png|js|css|swf|woff)$">
+Header set Expires "Sun, 16 Sep 2012 16:00:00 GMT"
+Header set Cache-Control "public"
+</FilesMatch>
+
+AddType application/x-font-woff woff
+
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+AddOutputFilterByType DEFLATE application/x-font-woff
+
+
+FileETag none
+
+RewriteEngine On
+RewriteRule ^dashboard$                 /dashboard.php [L,QSA]

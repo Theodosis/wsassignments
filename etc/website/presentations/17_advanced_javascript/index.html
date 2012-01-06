@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <title>Advanced JavaScript</title>
+        
+        <link href="css/slideshow.css" rel="stylesheet" />
+        <link href="css/theme.css" rel="stylesheet" />
+        <link href="css/talk.css" rel="stylesheet" />
+        <script src="js/prefixfree.min.js"></script>
+        <script src="js/jquery.js"></script>
+    </head>
+    <body data-duration="105">
+        <header id="intro" class="slide">
+            <h1>Advanced JavaScript</h1>
+            <p class="attribution">Theodosis Sourgkounis</p>
+        </header>
+        <section data-title="intro">
+            <header class="slide">
+                <h1>Introduction</h1>
+            </header>
+            <section class="slide" title="What's for today?">
+                <h2>What's for today?</h2>
+                <ul>
+                    <li class="delayed">Το αντικείμενο window</li>
+                    <li class="delayed">Το αντικείμενο document</li>
+                    <li class="delayed">DOM σε βάθος</li>
+                    <li class="delayed">Περισσότερα για events</li>
+                    <li class="delayed">Περισσότερα για callbacks και το keyword this</li>
+                </ul>
+            </section>
+        </section>
+        <section data-title="objects">
+            <section class="slide" title="window">
+                <h2>Window</h2>
+                <ul>
+                    <li class="delayed">Το αντικείμενο-βάση της JavaScript</li>
+                    <li class="delayed">Περιέχει όλες τις μεταβλητές και τις συναρτήσεις που δηλώνουμε</li>
+                    <li class="delayed">Περιέχει κάποια ακόμη βοηθητικά αντικείμενα και ιδιότητες
+                        <ul>
+                            <li>document</li>
+                            <li>location</li>
+                            <li>history</li>
+                            <li>JSON</li>
+                            <li>window dimentions and scrolling</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section class="slide" title="location">
+                <h2>Location</h2>
+                <ul>
+                    <li class="delayed">Η διέυθυνση στην οποία βρισκόμαστε</li>
+                    <li class="delayed">Περιέχει τη συνάρτηση <code>reload</code></li>
+                    <li class="delayed">Περιέχει τις ιδιότητες href, protocol, hostname, pathname, hash.
+                        <ul>
+                            <li> <span class="regex">window.location.href == "http://myblog.com/posts/13/#comment-22"</span>
+                                <ul>
+                                    <li> window.location.protocol == "http:"</li>
+                                    <li> window.location.hostname == "myblog.com"</li>
+                                    <li> window.location.pathname == "/posts/13/"</li>
+                                    <li> window.location.hash == "#comment-22"</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section class="slide" title="history">
+                <h2>History</h2>
+                <ul>
+                    <li class="delayed">Αντικείμενο που αφορά το ιστορικό πλοήγησης</li>
+                    <li class="delayed">Περιέχει δύο συναρτήσεις: <code>window.history.back()</code>, <code>window.history.forward()</code></li>
+                    <li class="delayed">Δεν έχουμε δυνατότητα πρόσβασης στο ιστορικό</li>
+                </ul>
+            </section>
+            <section class="slide" title="JSON">
+                <h2>JSON</h2>
+                <ul>
+                    <li class="delayed">Αντικείμενο που μας βοηθάει να μετατρέψουμε δεδομένα από και προς JSON</li>
+                    <li class="delayed">Δύο συναρτήσεις
+                        <ul>
+                            <li>JSON.parse( string );</li>
+                            <li>JSON.stringify( object );</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section class="slide" title="window dimentions and scrolling">
+                <h2>window dimentions and scrolling</h2>
+                <ul>
+                    <li class="delayed">innerWidth &amp; innerHeight</li>
+                    <li class="delayed">outerWidth &amp; outerHeight</li>
+                    <li class="delayed">scrollTo( x, y );</li>
+                </ul>
+            </section>
+            <section class="slide" title="this">
+                <h2>this</h2>
+                <ul>
+                    <li class="delayed">Η λέξη κλειδί this αναφέρεται πάντα στον ιδιοκτήτη της συνάρτησης
+                    που εκτελείται</li>
+                    <li class="delayed">Ο Ιδιοκτήτης μιας συνάρτησης είναι το αντικείμενο του οποίου είναι μέθοδος</li>
+                    <li class="delayed">Αν δεν έχουμε ορίσει κάποιο αντικείμενο ως ιδιοκτήτη της συνάρτησης, 
+                    ο ιδιοκτήτης είναι το window</li>
+                </ul>
+<pre class="delayed"><code>var obj = {
+    firstname: 'John',
+    lastname: 'Smith',
+    whoami: function(){
+        alert( this.firstname + " " + this.lastname );
+    }
+}</code></pre>
+            </section>
+            <section class="slide" title="toString function">
+                <h2>toString function</h2>
+                <ul>
+                    <li class="delayed">Όταν η JavaScript χρειάζεται να μετατρέψει ένα αντικείμενο σε string
+                    ψάχνει τη συνάρτηση <code>toString</code> σε αυτό το αντικείμενο.</li>
+                    <li class="delayed">Αν τη βρει, την εκτελεί και χρησιμοποιεί το αποτέλεσμά της</li>
+                    <li class="delayed">Αλλιώς κάνει ότι νομίζει</li>
+                </ul>
+<pre class="delayed"><code>var person = {
+    firstname: 'John',
+    lastname: 'Smith',
+    conduct: 'decorous',
+    toString: function(){
+        var result = this.firstname + ', ' + this.lastname;
+        if( this.conduct == 'decorous' ){
+            return result + ' the decorous one';
+        }
+        return result;
+    }
+};
+alert( person );</code></pre>
+            </section>
+            <section class="slide" title="date">
+                <h2>Date</h2>
+                <ul>
+                    <li class="delayed">αντικείμενο με το οποίο χειριζόμαστε τις ημερομηνίες</li>
+                </ul>
+<pre class="delayed"><code>var date = new Date();
+var year = date.getFullYear();
+var month = date.getMonth();
+var day = date.getDate();
+alert( day + "-" + month + "-" + year );
+
+var timestamp = date.getTime();
+alert( timestamp + "ms since 1-1-1970" );
+
+var inAnHour = new Date( timestamp + 1000 * 3600 );
+alert( inAnHour.toUTCString() );
+</code></pre>
+            </section>
+            <section class="slide" title="document">
+                <h2>document</h2>
+                <ul>
+                    <li class="delayed">Το αντικείμενο-βάση του εγγράφου μας</li>
+                    <li class="delayed">Η βάση του DOM</li>
+                    <li class="delayed">Περιέχει τα
+                        <ul>
+                            <li>title: Ο τίτλος μιας σελίδας, όπως ορίζεται με το element "title" στο "head" της html.
+                                Μπορούμε να το διαβάσουμε ή και να το αλλάξουμε
+                            </li>
+                            <li>cookie: Το σύνολο των cookies για τη συγκεκριμένη σελίδα, για το συγκεκριμένο χρήστη.
+                                <pre><code>document.cookie = 'man=delicious;'</code></pre>
+                            </li>
+                                
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </section>
+        <section data-title="DOM">
+            <section class="slide" title="whatisdom">
+                <h2>What's DOM?</h2>
+                <ul>
+                    <li class="delayed">Document Object Model</li>
+                    <li class="delayed">Στάνταρ του W3C</li>
+                    <li class="delayed">Ανεξάρτητο από γλώσσες προγραμματισμού (υλοποιείται σε πολλές)</li>
+                    <li class="delayed">Μία αναπαράσταση της σελίδας</li>
+                </ul>
+            </section>
+            <section class="slide" title="dom in js">
+                <h2>DOM &amp; javascript</h2>
+                <ul>
+                    <li class="delayed">Κατασκευάζεται όταν φορτώνει η σελίδα</li>
+                    <li class="delayed">Δε μπορούμε να το χρησιμοποιήσουμε πριν το φόρτωμα της σελίδας</li>
+                    <li class="delayed">Αποτελείται από DOM Nodes</li>
+                </ul>
+            </section>
+            <section class="slide" title="html tree">
+                <h2>HTML</h2>
+<pre><code>&lt;html&gt;
+    &lt;body&gt;
+        &lt;p&gt;
+            Hello, &lt;strong&gt;world!&lt;/strong&gt;
+        &lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </section>
+            <section class="slide" title="dom tree" style="text-align: center;">
+                <img style="margin-top: 2em;" src="img/domtree.png" alt="dom tree" />
+            </section>
+            <section class="slide" title="dom">
+                <ul>
+                    <li class="delayed">Κάθε HTML στοιχείο αναπαριστάται με ένα μοναδικό αντικείμενο</li>
+                    <li class="delayed">Υπάρχουν αντικείμενα DOM που δεν αντιστοιχούν σε στοιχεία HTML</li>
+                    <li class="delayed">Nodes
+                        <ul>
+                            <li>Κάθε στοιχείο HTML είναι ένα <code>Element Node</code></li>
+                            <li>Κάθε κομμάτι κειμένου στην HTML είναι ένα <code>Text Node</code></li>
+                            <li>Τα HTML σχόλια είναι <code>Comment Nodes</code></li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section class="slide" title="dom traversing">
+                <h2>DOM Traversing</h2>
+                <ul>
+                    <li class="delayed">Σε κάθε Node έχουμε μεθόδους και ιδιότητες για να διασχίσουμε το DOM δέντρο</li>
+                    <li class="delayed">Με αυτό τον τρόπο βρίσκουμε το στοιχείο που θέλουμε</li>
+                    <li class="delayed">Ως βάση έχουμε το document.body</li>
+                    <li class="delayed">Η πληθικότητα των αποτελεσμάτων καθορίζει και τον τύπο δεδομένων τους
+                        <ul>
+                            <li>Σε συναρτήσεις ή ιδιότητες που μπορούν να επιστρέψουν πολλά στοιχεία, επιστρέφεται πίνακας</li>
+                            <li>Σε συναρτήσεις ή ιδιότητες που μπορούν να επιστρέψουν μόνο ένα στοιχείο, επιστρέφεται Node</li>
+                        </ul>
+                    </li>
+                    <li class="delayed">Το όνομα της συνάρτησης/ιδιότητας προδίδει και την πληθικότητα των αποτελεσμάτων της</li>
+                </ul>
+            </section>
+            <section class="slide" title="dom attributes">
+                <h2>DOM Traversing</h2>
+                <ul>
+                    <li class="delayed">x.childNodes
+                        <ul>
+                            <li>Είναι ένας πίνακας</li>
+                            <li>Περιέχει όλα τα παιδιά του στοιχείου x</li>
+                            <li>Το πρώτο παιδί είναι το στοιχείο 0</li>
+                            <li>Το μήκος του είναι x.childNodes.length</li>
+                        </ul>
+                    </li>
+                    <li class="delayed">x.parentNode
+                        <ul>
+                            <li>Περιέχει τον πατέρα του x</li>
+                            <li>Είναι σίγουρα Element Node</li>
+                        </ul>
+                    </li>
+                    <li class="delayed">x.nextSibling
+                        <ul>
+                            <li>Περιέχει το επόμενο Node από τα παιδιά του πατέρα του x</li>
+                        </ul>
+                    </li>
+                    <li class="delayed">x.previousSibling
+                        <ul>
+                            <li>Περιέχει το προηγούμενο Node από τα παιδιά του πατέρα του x</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section class="slide" title="dom functions">
+                <h2>DOM functions</h2>
+                <ul>
+                    <li class="delayed">Μέθοδοι σε κάθε Element Node</li>
+                    <li class="delayed">Αντί για μεγάλες, δύσχρηστες αλυσίδες από childNodes[ ].childNodes[ ] ...</li>
+                    <li class="delayed">Πηγαίνουμε κατευθείαν στο στοιχείο ανεξάρτητα από τη δομή του δέντρου</li>
+                </ul>
+            </section>
+            <section class="slide" title="dom functions">
+                <h2>DOM functions</h2>
+                <ul>
+                    <li class="delayed">x.getElementById( id )
+                        <ul>
+                            <li>Επιστρέφει το στοιχείο που έχει id και είναι απόγονος του x</li>
+                            <li>Έχει πληθικότητα 1</li>
+                            <li>Μειονέκτημα: Σε κάθε στοιχείο που μας ενδιαφέρει χρειάζεται να έχουμε κάποιο ξεχωριστό id</li>
+                        </ul>
+                    </li>
+                    <li class="delayed">x.getElementsByTagName( tagname )
+                        <ul>
+                            <li>Επιστρέφει πίνακα με τους απογόνους του x που έχουν ετικέτα tagname</li>
+                        </ul>
+                    </li>
+                    <li class="delayed">x.getElementsByClassName( classname )
+                        <ul>
+                            <li>Επιστρέφει πίνακα με τους απογόνους του x που έχουν όνομα κλάσης classname</li>
+                        </ul>
+                    </li>
+                    <li class="delayed">x.querySelectorAll( selector )
+                        <ul>
+                            <li>Επιστρέφει πίνακα με τα αποτελέσματα του css επιλογέα, όταν εκτελεσθεί για τους απογόνους του x</li>
+                            <li>Δεν υποστηρίζεται από παλιότερους browsers:
+                                <ul>
+                                    <li>Mozilla Firefox 3</li>
+                                    <li>Internet Explorer 7</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section class="slide" title="document functions">
+                <h2>DOM element attributes</h2>
+                <ul>
+                    <li class="delayed">Κάθε DOM element έχει attributes αυτά που έχει και το αντίστοιχο
+                    HTML element</li>
+                    <li class="delayed">Μπορούμε να πάρουμε ή να ορίσουμε τα attributes αυτά, και θα αλλάξουν και τα αντίστοιχα attributes των HTML elements</li>
+                </ul>
+<pre class="delayed"><code>&lt;input type="text" name="firstname" /&gt;
+
+var input = document.getElementsByTagName( 'input' );
+var name = input[ 0 ].name;
+if( name == 'firstname' ){
+    input[ 0 ].value = 'John';
+}</code></pre>
+            </section>
+        </section>
+        <section data-title="events">
+            <section class="slide" title="handlers & events">
+                <h2>Events</h2>
+                <ul>
+                    <li class="delayed">Χειριστές (handlers)
+                        <ul>
+                            <li>Συναρτήσεις που τρέχουν όταν γίνεται κάποιο γεγονός</li>
+                        </ul>
+                    </li>
+                    <li class="delayed">Γεγονότα (events)
+                        <ul>
+                            <li>Συμβαίνουν όταν αλληλεπιδρά ο χρήστης με τη σελίδα</li>
+                            <li>Αφορούν κάθε φορά ένα στοιχείο</li>
+                        </ul>
+                    </li>
+                    <li class="delayed">Αντιστοιχίζουμε χειστές με γεγονότα</li>
+                    <li class="delayed">Όταν συμβεί το γεγονός τρέχει ο χειριστής</li>
+                    <li class="delayed">Τέσσερις μεγάλες κατηγορίες από events
+                        <ul>
+                            <li>Mouse Events</li>
+                            <li>Keyboard Events</li>
+                            <li>Browser Events</li>
+                            <li>Server Events</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section class="slide" title="jQuery events">
+                <h2>jQuery events</h2>
+                <ul>
+                    <li>x.eventName();
+                        <ul>
+                            <li class="delayed">Χωρίς ορίσματα πυροδοτεί το event στα επιλεγμένα elements</li>
+                            <li class="delayed">Με 1 όρισμα τύπου συνάρτηση, αναθέτει στο event των επιλεγμένων elements τη συνάρτηση αυτή ως handler</li>
+                            <li class="delayed">Όταν πυροδοτηθεί το event (είτε από το χρήστη είτε από τη javascript), θα δωθεί στον handler ένα αντικείμενο τύπου event</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section class="slide" title="mouse events">
+                <h2>mouse events</h2>
+                <ul>
+                    <li class="delayed">click
+                        <ul><li>Εκτελείται με το κλικ</li></ul>
+                    </li>
+                    <li class="delayed">dblclick
+                        <ul><li>Εκτελείται με το διπλό κλικ</li></ul>
+                    </li>
+                    <li class="delayed">mousedown
+                        <ul><li>Το πρώτο μέρος του κλικ</li></ul>
+                    </li>
+                    <li class="delayed">mouseup
+                        <ul><li>Το δεύτερο μέρος του κλικ</li></ul>
+                    </li>
+                    <li class="delayed">mouseenter
+                        <ul><li>Είσοδος του κέρσορα σε ένα element</li></ul>
+                    </li>
+                    <li class="delayed">mouseleave
+                        <ul><li>Έξοδος του κέρσορα από ένα element</li></ul>
+                    </li>
+                    <li class="delayed">mousemove
+                        <ul><li>Κίνηση του κέρσορα</li></ul>
+                    </li>
+                    <li class="delayed">hover
+                        <ul><li>Δέχεται δύο συναρτήσεις. Συνδιασμός των mouseenter και 
+                        mouseleave</li></ul>
+                    </li>
+                </ul>
+            </section>
+            <section class="slide" title="mouse object">
+                <h2>jQuery event object</h2>
+                <ul>
+                    <li class="delayed">Διαφορετικό για διαφορετικά events</li>
+                    <li class="delayed">Για τα mouse events:
+                        <ul>
+                            <li><code>target:</code> το element στο οποίο έγινε το click</li>
+                            <li><code>altKey:</code> boolean τιμή με true αν ήταν πατημένο το alt κατά τη διάρκεια του click, false διαφορετικά</li>
+                            <li><code>ctrlKey:</code> το ίδιο με το altKey, αλλά για το ctrl</li>
+                            <li><code>offsetX:</code> η οριζόντια απόσταση από την αριστερή άκρη του element</li>
+                            <li><code>offsetY:</code> η κατακόρυφη απόσταση από την πάνω άκρη του element</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section class="slide" title="keyboard events">
+                <h2>keyboard events</h2>
+                <ul>
+                    <li class="delayed">keydown
+                        <ul><li>Εκτελείται με το πάτημα ενός κουμπιού</li></ul>
+                    </li>
+                    <li class="delayed">keypress
+                        <ul><li>Εκτελείται όσο έχουμε πατημένο ένα κουμπί</li></ul>
+                    </li>
+                    <li class="delayed">keyup
+                        <ul><li>Εκτελείται με την απελευθέρωση ενός κουμπιού</li></ul>
+                    </li>
+                </ul>
+            </section>
+            <section class="slide" title="keyboard event">
+                <h2>keyboard events</h2>
+                <ul>
+                    <li>Για τα keyboard events:
+                        <ul>
+                            <li><code>target:</code> το element που ήταν επιλεγμένο, όταν πυροδοτήθηκε το event</li>
+                            <li><code>altKey:</code> boolean τιμή με true αν ήταν πατημένο το alt κατά τη διάρκεια του click, false διαφορετικά</li>
+                            <li><code>ctrlKey:</code> το ίδιο με το altKey, αλλά για το ctrl</li>
+                            <li><code>which:</code> Ενας κωδικός που αντιστοιχεί στο πλήκτρο που πατήθηκε</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section class="slide" title="browser events">
+                <h2>browser events</h2>
+                <ul>
+                    <li class="delayed">form events
+                        <ul>
+                            <li>focus: επιλογή ενός input</li>
+                            <li>blur: αποεπιλογή ενός input</li>
+                            <li>submit: υποβολή της φόρμας</li>
+                        </ul>
+                    </li>
+                    <li class="delayed">document events
+                        <ul>
+                            <li>ready: το DOM έγγραφο έχει δημιουργηθεί</li>
+                        </ul>
+                    </li>
+                    <li class="delayed">window events
+                        <ul>
+                            <li>scroll</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section class="slide" title="browser events">
+                <h2>default behaviour</h2>
+                <ul>
+                    <li class="delayed">Πολλά από τα events έχουν μια προκαθορισμένη συμπεριφορά
+                        <ul>
+                            <li>click σε κάποιο anchor μας πηγαίνει σε άλλη σελίδα</li>
+                            <li>click σε ένα submit input υποβάλει μια φόρμα</li>
+                            <li>enter σε ένα input υποβάλει μια φόρμα</li>
+                            <li>tab για μετάβαση στο επόμενο input</li>
+                        </ul>
+                    </li>
+                    <li class="delayed">
+                        Μπορούμε να σταματήσουμε την προκαθορισμένη συμπεριφορά επιστρέφοντας
+                        false από τον handler
+                    </li>
+                </ul>
+<pre class="delayed"><code>$( 'a.donothing' ).click( function(){
+    return false;
+} );</code></pre>
+            </section>
+            <section class="slide" title="this">
+                <h2>this &amp; event handlers</h2>
+                <ul>
+                    <li class="delayed">Σε μια συνάρτηση χειριστή, η λέξη κλειδί this αναφέρεται στο
+                    html element στο οποίο δημιουργήθηκε το event</li>
+                </ul>
+<pre class="delayed"><code>$( 'h2' ).click( function(){
+    var text = $( this ).text();
+    alert( "You clicked the h2 with text: " + text );
+} );</code></pre>
+            </section>
+            <section class="slide" title="server events">
+                <h2>Server Events (reverse ajax)</h2>
+                <ul>
+                    <li class="delayed">Ίδιο σκεπτικό: ένα κομμάτι κώδικα εκτελείται μόλις συμβεί κάτι</li>
+                    <li class="delayed">Το πότε και τι θα συμβεί το γνωρίζει ο server</li>
+                    <li class="delayed">Παράδειγμα
+                        <ul>
+                            <li>κάποιος συνομιλητής έστειλε ένα μήνυμα στο chat</li>
+                            <li>Κάποιος σχολίασε στο προφίλ σου</li>
+                        </ul>
+                    </li>
+                    <li class="delayed">Αρκετά διαφορετική υλοποίηση από τα υπόλοιπα</li>
+                </ul>
+            </section>
+            <section class="slide" title="event bubbling">
+                <h2>event bubbling</h2>
+                <ul>
+                    <li class="delayed">Ένα γεγονός σε ένα στοιχείο "αναδύεται" μέχρι τον τελευταίο πατέρα του</li>
+                    <li class="delayed">Λύνει προβλήματα όπως:
+                        <ul>
+                            <li>Πατέρας και παιδί έχουν χειριστές για το κλικ. Ποιό τρέχει πρώτο;</li>
+                            <li>σωστό drag &amp; drop</li>
+                            <li>Στοιχεία που προσθέτουμε δυναμικά, και για τα οποία θέλουμε
+                            να ορίσουμε χειριστές</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section class="slide" title="event bubbling" style="text-align: center;">
+                <img src="img/bubble.png" alt="event bubbling" style="max-height: 100%;max-width: 100%;" />
+            </section>
+        </section>
+        <section data-title="assignment" class="slide">
+            <h2>final assignment</h2>
+            <ul>
+                <li>Ομάδες 3+ ατόμων</li>
+                <li>Δήλωση ομάδων μέχρι τις 25/12/2011
+                    <ul>
+                        <li>Με email στο στο info@webseminars.ee.auth.gr</li>
+                        <li>Όνομα, email, id</li>
+                        <li>1 email ανά ομάδα</li>
+                    </ul>
+                </li>
+                <li>Παράδοση εργασίας μέχρι 8/1/2012
+                    <ul>
+                        <li>Με email στο info@webseminars.ee.auth.gr</li>
+                        <li>Παραδώστε μια έκδοση που να δουλεύει</li>
+                        <li>Δεν θα επιστραφεί</li>
+                        <li>Θα μας στείλετε τον κώδικα + URL όπου μπορούμε να δούμε την υπηρεσία σας</li>
+                    </ul>
+                </li>
+                <li>Μοιραστείτε στο forum επιλογές hosting</li>
+            </ul>
+        </section>
+        <section data-title="assignment" class="slide">
+            <h2>final assignment</h2>
+            <ul>
+                <li>Πλήρης web υπηρεσία
+                    <ul>
+                        <li>Σελίδα τύπου Twitter</li>
+                        <li>Forum</li>
+                        <li>Ιστολόγιο</li>
+                        <li>Εικονολόγιο</li>
+                        <li>Αγγελίες</li>
+                        <li>Ερωτοαπαντήσεις</li>
+                        <li>Συλλογή αγαπημένων</li>
+                        <li>Σελίδα διαχείρησης αρχείων (τύπου rapidshare)</li>
+                        <li style="margin-top: 30px;">ή ό,τι άλλο θέλετε, αντίστοιχης έκτασης</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+        <section data-title="functional">
+            <header class="slide">
+                <h1>more about functions</h1>
+            </header>
+            <section class="slide" title="alert">
+                <h2>more about functions</h2>
+<pre><code>
+function greet( <span title="Παράμετρος συνάρτησης">name</span> ){
+    var greeting = "Greetings, ";
+    greeting += name;
+    alert( greeting );
+}
+greet( <span title="τιμή παραμέτρου">"human"</span> );
+</code></pre>
+            </section>
+            <section class="slide" title="return">
+<pre><code>function add( a, b ){
+    return a + b;
+}
+alert( <span title="Αντικαθίσταται από το 3">add( 1, 2 )</span> );
+</pre></code>
+            </section>
+            <section class="slide" title="optionals">
+                <h2>Optional parameters</h2>
+                <ul>
+                    <ul>
+                        <li class="delayed">Τα ορίσματα που περνάνε σε μια συνάρτηση JavaScript όταν την καλούμε
+                        μπορεί να είναι περισσότερα απ' όσα ορίζονται.</li>
+                        <li class="delayed"><code>arguments</code>: Πίνακας που περιέχει τα ορίσματα που έχουν
+                        περάσει στη συνάρτηση</li>
+                    </ul>
+<pre class="delayed"><code>function add(){
+    var length = <span title="Πίνακας παραμέτρων">arguments.length;</span>
+    var sum = 0;
+    for( var i = 0; i < length; ++i ){
+        sum += <span title="i-οστή παράμετρος" class="bottom">arguments[ i ];</span>
+    }
+    return sum;
+}
+alert( add( 1, 2, 3 ) );
+alert( add( 6, 21, -5, 7, 0 ) );</code></pre>
+                </ul>
+            </section>
+            <section class="slide" title="variable range">
+                <h2 style="font-size: 1.8em;">Τοπικές και καθολικές μεταβλητές</h2>
+                <ul>
+                    <li class="delayed">Οι καθολικές μεταβλητές είναι προσβάσιμες από παντού</li>
+                    <li class="delayed">Ορίζονται με var εκτός όλων των συναρτήσεων</li>
+                    <li class="delayed">Αποτελούν ιδιότητες στο window</li>
+                    <li class="delayed">Η JavaScript θεωρεί οτι αναφερόμαστε σε καθολική μεταβλητή όταν
+                    δεν την ορίζουμε</li>
+                    <li class="delayed" style="margin-top: 2em;">Οι τοπικές μεταβλητές είναι προσβάσιμες μόνο μέσα στη συνάρτηση που ορίζονται</li>
+                    <li class="delayed">Ορίζονται με var εντός της συνάρτησης</li>
+                    <li class="delayed">Τα ορίσματα της συνάρτησης, καθώς και ο πίνακας attributes είναι τοπικές μεταβλητές</li>
+                </ul>
+            </section>
+            <section class="slide" title="variable range">
+<pre><code>
+<span title="Καθολική μεταβλητή" class="red">var a = 5;</span>
+function foo(){
+    
+    <span title="Τοπική μεταβλητή">var a;</span>
+    
+    <span title="Δεν επηρεάζει την καθολική μεταβλητή">a = 6;</span>
+    alert( a );
+}
+foo();
+alert( <span title="Καθολική μεταβλητή" class="red">a</span> );</code></pre>
+            </section>
+            <section class="slide" title="variable range">
+<pre><code>
+<span title="Καθολική μεταβλητή" class="red">var a = 5;</span>
+function foo(){
+    
+    <span title="Η Καθολική μεταβλητή αλλάζει" class="red">a = 6;</span>
+    alert( a );
+}
+foo();
+alert( <span title="Καθολική μεταβλητή" class="red">a</span> );</code></pre>
+            </section>
+            <section class="slide" title="recursion">
+                <h2>Recursion</h2>
+                <ul>
+                    <li>Κλήση μιας συνάρτησης μέσα από τον εαυτό της (αναδρομή)</li>
+                </ul>
+<pre><code>function factorial( n ){
+    if( n == 1 ){
+        return 1;
+    }
+    return <span title="αναδρομή!">factorial( n - 1 )</span> * n;
+}
+alert( factorial( 3 ) );
+</code></pre>
+            </section>
+            <section class="slide" title="anonymous">
+                <h2>anonymous functions</h2>
+                <ul>
+                    <li class="delayed">Η συνάρτηση είναι ένας ακόμη τύπος τιμής, όπως boolean, number, string</li>
+                    <li class="delayed">Οι συναρτήσεις δεν είναι απαραίτητο να έχουν όνομα</li>
+                    <li class="delayed">Μια ανώνυμη συνάρτηση που προσθέτει:</li>
+                </ul>
+<pre class="delayed"><code>
+<span title="παράλειψη ονόματος">function ( a, b )</span>{
+    return a + b;
+}</code></pre>
+            </section>
+            <section class="slide" title="anonymous">
+                <h2>calling an anonymous function</h2>
+<pre><code>alert(
+    ( <span style="color: #62f;">function( a, b ){
+        return a + b;
+    }</span> )<span title="κλήση" class="bottom">( 5, 7 )</span>
+);</code></pre>
+            </section>
+            <section class="slide" title="functions as attributes">
+                <h2>functions as attributes</h2>
+                <ul>
+                    <li>$.get(), $.post(), click(), submit() παίρνουν ώς παράμετρο μια συνάρτηση</li>
+                </ul>
+<pre><code>var <span title>foo</span> = function(){
+    alert( 'clicked!' );
+    return false;
+}
+$( 'a' ).click( <span title="Περνάει συνάρτηση">foo</span> );</code></pre>
+            </section>
+            <section class="slide" title="functions as attributes">
+                <h2>functions as attributes</h2>
+                <ul>
+                    <li>Το () χρησιμοποιείται για την κλήση μιας συνάρτησης</li>
+                </ul>
+<pre><code>var <span title>foo</span> = function(){
+    alert( 'clicked!' );
+    return false;
+}
+$( 'a' ).click( <span title="Περνάει false">foo()</span> );</code></pre>
+            </section>
+            <section class="slide" title="setTimeout">
+                <h2>setTimeout</h2>
+                <ul>
+                    <li class="delayed">Ορίζει οτι μία συνάρτηση θα τρέξει ασύγχρονα μετά από ένα χρονικό διάστημα</li>
+                    <li class="delayed"><pre><code>setTimeout( function, milliseconds );</code></pre></li>
+                </ul>   
+<pre class="delayed"><code>var sayHello = function(){
+    alert( "Hello, world!" );
+};
+<span class="comment">//τρέχει 1 φορά μετά από 5s</span>
+setTimeout( sayHello, 5000 );
+</code></pre>
+            </section>
+            <section class="slide" title="setInterval">
+                <h2>setInterval</h2>
+                <ul>
+                    <li class="delayed">Ορίζει οτι μία συνάρτηση θα τρέξει ασύγχρονα κάθε ένα ορισμένο χρονικό διάστημα</li>
+                    <li class="delayed"><pre><code>setInterval( function, milliseconds );</code></pre></li>
+                </ul>   
+<pre class="delayed"><code>var sayHello = function(){
+    alert( "Hello, world!" );
+};
+<span class="comment">//τρέχει κάθε 5s</span>
+setInterval( sayHello, 5000 );
+</code></pre>
+            </section>
+            <section class="slide" title="functions as attributes">
+                <h2>functions as callbacks</h2>
+                <ul>
+                    <li>Μποροούμε να φτιάξουμε δικές μας συναρτήσεις που παίρνουν συναρτήσεις ώς παραμέτρους</li>
+                </ul>
+<pre><code>var conditionalCall = function( condition, f, g ){
+    if( condition ){
+        <span title="κλήση της f" class="bottom blue">f();</span>
+    }
+    else{
+        <span title="κλήση της g" class="bottom blue">g();</span>
+    }
+};
+conditionalCall( <span title="condition: binary">x == 5</span>, 
+
+<span title="η πρώτη συνάρτηση" class="blue">function(){
+    alert( "x is five" );
+}</span>, 
+
+<span title="η δεύτερη συνάρτηση" class="blue">function(){
+    alert( "x is not five" );
+}</span> );</code></pre>
+            </section>
+            <section class="slide" title="returning functions">
+                <h2>returning functions</h2>
+                <ul>
+                    <li class="delayed">Οι συναρτήσεις είναι ένας ακόμη απλός τύπος</li>
+                    <li class="delayed">Άρα μπορούν να επιστρέφονται από συναρτήσεις</li>
+                </ul>
+<pre class="delayed"><code>function makeFunction(){
+    var displayHello = function(){
+        alert( "Hello, world!" );
+    };
+    return displayHello;
+}
+
+var hello = makeFunction();
+hello();</code></pre>
+            </section>
+            <section class="slide" title="returning functions">
+<pre><code>function makeAdder(){
+    var adder = function( x, y ){
+        return x + y;
+    };
+    return adder;
+}
+
+var add = makeAdder();
+alert( add );
+alert( add( 5, 7 );
+</code></pre>
+            </section>
+            <section class="slide" title="returning functions">
+<pre><code>function makeMultiplier( factor ){
+    var multiplier = function( x ){
+        return x * factor;
+    };
+    return multiplyer;
+}
+
+var double = makeMultiplier( 2 );
+var triple = makeMultiplier( 3 );
+
+alert( double( 3 ) );
+alert( triple( 5 ) );
+</code></pre>
+            </section>
+            <section class="slide" title="closures">
+                <h2>closures</h2>
+                <ul>
+                    <li class="delayed">Οι συναρτήσεις που ορίζονται μέσα σε άλλες συναρτήσεις έχουν πρόσβαση στις μεταβλητές των εξωτερικών συναρτήσεων</li>
+                    <li class="delayed">Αυτό ονομάζεται κλείσιμο (closure)</li>
+                </ul>
+<pre class="delayed"><code>var makeMultiplier = function( <span title>factor</span> ){
+    var multiplier = function( x ){
+        return <span title>factor</span> * x;
+    }
+    return multiplier;
+}</code></pre>
+            </section>
+            <section class="slide" title="closures">
+                <h2>counter</h2>
+<script>
+    var makeCounter = function(){
+        var counter = 0;
+        return function(){
+            return ++counter;
+        }
+    }
+    var countCows = makeCounter();
+    var countChicken = makeCounter();
+</script>
+<pre><code>var makeCounter = function(){
+    var counter = 0;
+    return function(){
+        return ++counter;
+    }
+}
+var countCows = makeCounter();
+var countChicken = makeCounter();
+<span onclick="alert( countCows() + ' cows' );">alert( countCows() + " cows" );</span>
+<span onclick="alert( countChicken() + ' chickens' );">alert( countChicken() + " chickens" );</span>
+</code></pre>
+            </section>
+            <style scoped>
+                [title]{
+                    position: relative;
+                    color: orange;
+                }
+                [title].blue{
+                    color: #62f;
+                }
+                [title]:after{
+                    content: attr(title);
+                    position: absolute;
+                    top: -1.5em;
+                    left: 2em;
+                    font-size: 0.7em;
+                    color: green;
+                }
+                [title].bottom:after{
+                    top: 2em;
+                }
+                [title].red:after{
+                    color: red;
+                }
+            </style>
+        </section>
+        <section data-title="animations">
+            <section class="slide" title="animations">
+                <h2>animations</h2>
+                <ul>
+                    <li>Μία σταδιακή αλλαγή στην εμφάνιση ενός αντικειμένου
+                        <ul>
+                            <li>Στη θέση</li>
+                            <li>Στο χρώμα</li>
+                            <li>Στο μέγεθος</li>
+                            <li>κλπ</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section class="slide" title="animations">
+                <div class="example"></div>
+<pre class="dist"><code>div{
+    background: #fff;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 30px;
+    left: 0px;
+}</code></pre>                
+            </section>
+            <section class="slide" title="animations">
+            <div class="example" id="test"></div>
+<pre class="dist" onclick="jQuery( '#test' )[ 0 ].style.left = '450px';"><code>var position = 0;
+var div = document.getElementsByTagName( 'div' )[ 0 ];
+while( position &lt; 400 ){
+    position += 1;
+    div.style.left = position + 'px';
+}
+</code></pre>
+            </section>
+            <section class="slide" title="animations">
+            <div class="example" id="test2"></div>
+<script>
+    var position = 50;
+    var div = document.getElementById( 'test2' );
+    var run = function (){
+        setInterval( function(){
+            position += 1;
+            if( position > 500 ){
+                return;
+            }
+            div.style.left = position + 'px';
+        }, 100 );
+    }
+</script>
+<pre class="dist" onclick="run()"><code>var position = 0;
+var div = document.getElementsByTagName( 'div' )[ 0 ];
+setInterval( function(){
+    position += 1;
+    div.style.top = position + 'px';
+}, 100 );
+</code></pre>
+            </section>
+
+            <style scoped>
+                div.example{
+                    background: #fff;
+                    width: 100px;
+                    height: 100px;
+                    position: absolute;
+                    top: 30px;
+                    left: 50px;
+                }
+                pre.dist{
+                    margin-top: 150px;
+                }
+            </style>
+        </section>
+        <section data-title="outro">    
+            <section class="slide" title="nexttime">
+                <h2>21/12/2011</h2>
+                <ul>
+                    <li class="delayed"> Να μην ξεχάσω:</li>
+                    <li class="delayed">Γραφικά στο web</li>
+                    <li class="delayed">HTML 5</li>
+                    <li class="delayed">Canvas</li>
+                    <li class="delayed">WebGL</li>
+                </ul>
+            </section>
+        </section>
+        
+        <script src="js/slideshow.js"></script>
+        <script>
+        var slideshow = new SlideShow();
+
+        var snippets = document.querySelectorAll('.snippet');
+        for(var i=0; i<snippets.length; i++) {
+            new CSSSnippet(snippets[i]);
+        }
+
+        var cssControls = document.querySelectorAll('.css-control');
+        for(var i=0; i<cssControls.length; i++) {
+            new CSSControl(cssControls[i]);
+        }
+        </script>
+            
+    </body>
+</html>

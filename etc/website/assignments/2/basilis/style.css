@@ -1,0 +1,105 @@
+body {
+    font-family: sans-serif;
+    background-color: #2d45ac;
+}
+
+#header, #comic, #menu {
+    border: 2px solid black;
+    width: 1123px;
+    margin: 0 auto;
+}
+
+#header {
+    margin-bottom: 10px;
+    padding-top: 1px;
+    padding-left: 30px;
+    padding-bottom: 1px;
+    background-color: white;
+    width: 1093px;
+}
+
+.romance {
+    color: #ac2d2d;
+}
+
+.sarcasm {
+    color: #30ac2d;
+}
+
+.math {
+    color: #2d45ac;
+}
+
+.language {
+    color: #e99613;
+}
+
+#header p {
+    color: #333;
+    font: bold 13pt serif;
+    font-variant: small-caps;
+    line-height: 7px;
+}
+
+#comic {
+    text-align: center;
+    background-color: white;
+    padding-top: 1px;
+    margin-bottom: 16px;
+    padding-bottom: 19px;
+}
+
+#comic p {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-style: italic;
+}
+
+#menu {
+    background-image: url("menu.png");
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    width: 1097px;
+    padding-top: 32px;
+    padding-left: 26px;
+    padding-bottom: 42px;
+    list-style-position: inside;
+    background-color: #eee;
+}
+
+a {
+    text-decoration: none;
+    border-bottom: 1px dashed blue;
+}
+
+#header h2:first-letter {
+    margin-right: -1px;
+}
+
+strong {
+    background-color: #fc6;
+}
+
+#header h2 {
+    margin-bottom: 25px;
+}
+
+#comic h2 {
+    padding-bottom: 1px;
+}
+
+#comic img {
+    margin-bottom: 20px;
+}
+
+li {
+    padding-top: 10px;
+    font-family: arial, sans-serif;
+    font-size: 16pt;
+}
+
+li a {
+    color: black;
+    border-bottom-style: dotted;
+    border-color: black;
+}

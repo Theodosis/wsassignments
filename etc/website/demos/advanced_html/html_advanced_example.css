@@ -1,0 +1,111 @@
+/* Basic stuff.. */
+
+body {
+    margin:0px;
+    background: #8d99dd; 
+	font-family: verdana, sans-serif;
+    font-size:11pt;
+}
+
+a {
+	text-decoration:none;
+}
+
+a:hover, a:active {
+	text-decoration:underline;
+}
+
+p {
+	margin-top:4px;
+	margin-bottom:4px;
+	line-height:1.7em;
+}
+
+h1 {
+	font-size:38px;
+}
+h2 {
+	font-size:24px;
+    margin-bottom:12px;
+}
+h3 {
+	font-size:32px;
+}
+h4 {
+	font-size:16px;
+    margin-bottom:4px;
+}
+h4:before { content:"> "; }
+
+/* specific-selectors stuff.. */
+
+div#container {
+	margin:0;
+	margin-right:auto;
+	margin-left:auto;
+	width:600px;
+}
+
+div#head, div#footakia {
+	margin:0;
+    padding: 1px;
+}
+
+div#head {
+	text-align:center;
+	border-top:0;
+}
+
+div#body div {
+    border-width: 4px;
+    border-style: double;
+	margin:0;
+	padding:20px;
+	margin-top:48px;
+}
+
+div#footakia {
+    border-bottom: 0 !important;
+}
+
+/* colors */
+.light {
+	background:#d8e8f5;
+	color:#022;
+	border-color: black;
+}
+.light a {
+	color:#710;
+}
+.dark {
+	background:#444;
+	color:#eee;
+	border: 4px double white;
+}
+.dark a {
+	color:#ff8;
+}
+
+/* misc */
+
+a.external {
+	padding:2px;
+	border-width:1px;
+	border-style:dotted;
+}
+a.external:hover, a.external:active {
+	border-style:solid;
+	text-decoration:none;
+}
+
+/* styles */
+
+p.author {
+	text-align:right;
+	font-style:italic;
+	font-family:Georgia, serif;
+	margin-top:32px;
+}
+p.author:before {
+	content:"-- ";
+}

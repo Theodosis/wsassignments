@@ -1,0 +1,41 @@
+body
+{
+font-size: 15pt;
+font-family: arial;
+font-weight: normal;
+background-color: rgb(70%, 0%, 50%);
+text-align: justify;
+color: black;
+}
+
+h1
+{
+border-top: 15px solid rgb(50%, 0%, 50%);
+font-family: arial;
+font-size: 35pt;
+text-align: center;
+padding-top: 12px;
+padding-right: 35px;
+text-transform: uppercase;
+}
+
+h2
+{
+border-bottom: 15px solid rgb(50%, 0%, 50%);
+font-family: arial;
+font-size: 30pt;
+text-align: left;
+}
+
+td
+{
+text-align: left;
+padding-top: 7px;
+padding-right: 10px;
+padding-bottom: 10px;
+padding-left: 10px;
+border-bottom: 2px solid rgb(50%, 0%, 50%);
+border-left: 2px solid rgb(50%, 0%, 50%);
+}
+
+

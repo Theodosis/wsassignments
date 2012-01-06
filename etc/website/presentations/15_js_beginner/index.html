@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <title>Introduction to JavaScript</title>
+        
+        <link href="css/slideshow.css" rel="stylesheet" />
+        <link href="css/theme.css" rel="stylesheet" />
+        <link href="css/talk.css" rel="stylesheet" />
+        <script src="js/prefixfree.min.js"></script>
+    </head>
+    <body data-duration="105">
+        <header id="intro" class="slide">
+            <h1>JavaScript from Scratch</h1>
+            <p class="attribution">Theodosis Sourgkounis</p>
+        </header>
+        <section data-title="js intro">
+            <header class="slide">
+                <h1>Introduction</h1>
+            </header>
+            <section class="slide" title="What's for today?">
+                <h2>What's for today?</h2>
+                <ul>
+                    <li class="delayed">Εισαγωγή στη γλώσσα JavaScript. Γιατί τη χρειαζόμαστε;</li>
+                    <li class="delayed">Βασική σύνταξη</li>
+                    <li class="delayed">Συνδυασμός JavaScript και HTML</li>
+                    <li class="delayed">Μεταβλητές, Τελεστές, Έλεγχος Ροής</li>
+                    <li class="delayed">Συναρτήσεις και Αντικείμενα</li>
+                    <li class="delayed">Βασικοί τύποι δεδομένων</li>
+                </ul>
+            </section>
+            <section class="slide" title="about JavaScript">
+                <h2>JavaSript</h2>
+                <ul>
+                    <li class="delayed"><strong>ΔΕΝ</strong> έχει καμία σχέση με την Java.</li>
+                    <li class="delayed">Τρέχει στον client και όχι στον server.</li>
+                    <li class="delayed">Στέλνεται στον browser μέσω HTTP, ως ξεχωριστό αρχείο ή μέσα στην HTML.</li>
+                    <li class="delayed">Με την JavaScript ορίζουμε τη συμπεριφορά της σελίδας.</li>
+                </ul>
+            </section>
+            <section class="slide" title="alternatives">
+                <h2>Alternatives</h2>
+                <p class="delayed">Δεν έχουμε άλλη εναλλακτική λύση που να είναι ανοιχτό πρότυπο.</p>
+                <p class="delayed"><img src="img/kill-adobe-flash-guns.jpg" alt="kill flash"/></p>
+                <style scoped>
+                    p{
+                        margin: 20px;
+                        text-align: center;
+                    }
+                </style>
+            </section>
+            <section class="slide" class="what is donw with JS?">
+                <h2>What can be done with JS?</h2>
+                <ul>
+                    <li class="delayed">Animations, εφέ</li>
+                    <li class="delayed">Φόρτωση ή αποστολή περιεχομένου ασύγχρονα (χωρίς refresh)</li>
+                    <li class="delayed">Έλεγχος φόρμας πρίν το submit</li>
+                    <li class="delayed">Τροποποίηση των περιεχομένων και της εμφάνισης της
+                    σελίδας, ανάλογα με τη συμπεριφορά του χρήστη</li>
+                    <li class="delayed">ότι άλλο μπορείτε να φανταστείτε</li>
+                    <li class="delayed cross">καφέ</li>
+                </ul>
+            </section>
+        </section>
+        <section data-title="HTML &amp; JavaScript">
+            <header class="slide">
+                <h1>HTML &amp; JavaScript</h1>
+            </header>
+            <section class="slide" title="basics about script tag">
+                <h2>HTML &amp; JavaScript</h2>
+                <ul>
+                    <li class="delayed">Ετικέτα &lt;script&gt;
+                        <ul>
+                            <li>Χρησιμοποιείται για να φορτώσει κώδικα JavaScript</li>
+                        </ul>
+                    </li>
+                    <li class="delayed">Ιδιότητα src
+                        <ul>
+                            <li>Έχει τιμή το αρχείο JS που πρέπει να φορτώσει</li>
+                            <li>Μπορεί να παραληφθεί</li>
+                        </ul>
+                    </li>
+                    <li class="delayed">Ιδιότητα type
+                        <ul>
+                            <li>Έχει τιμή "text/javascript". Πάντα.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <pre class="delayed"><code>&lt;script type="text/javascript" src="foo.js"&gt;&lt;/script&gt;</code></pre>
+                <style scoped>
+                    pre{
+                        margin-top: 50px;
+                    }
+                </style>
+            </section>
+            <section class="slide" title="including a script">
+                <pre><code>&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;It is alive!&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;script type="text/javascript" src="foo.js"&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+                <pre><code>&lt;script type="text/javascript"&gt;
+    //JavaScript Code. 
+    //This is a JS comment btw
+&lt;/script&gt;</code></pre>
+            </section>
+        </section>
+        <section data-title="basic syntax and hello world">
+            <section class="slide" title="basic syntax">
+                <h2>Basic Syntax</h2>
+                <ul>
+                    <li class="delayed">Ο κώδικας σε κάθε script αρχίζει να εκτελείται 
+                    την ώρα που τον "διαβάζει" ο browser</li>
+                    <li class="delayed">Ο κώδικας εκτελείται σειριακά - η μία εντολή μετά την άλλη</li>
+                    <li class="delayed">Κάθε εντολή τελειώνει σε <strong>;</strong></li>
+                    <li class="delayed">Δε λειτουργεί τυπώνοντας πράγματα (όπως η PHP)</li>
+                </ul>
+            </section>
+            <section class="slide" title="what is alert">
+                <h2>alert()</h2>
+                <ul>
+                    <li class="delayed"><em>alert:</em> Βγάζει ειδοποίηση με το κείμενο της
+                    πρώτης παραμέτρου</li>
+                    <li class="delayed">Χρήσιμη για να ξέρουμε τι συμβαίνει κατά την
+                    ανάπτυξη της εφαρμογής μας</li>
+                </ul>
+            </section>
+            <section class="slide" title="hello world" onclick="alert( 'Hello world!' );">
+                <pre><code>&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;JS&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;script type="text/javascript"&gt;
+            alert( 'Hello world!' );
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            
+            </section>
+            <section class="slide" title="execution">
+                <h2>Execution</h2>
+                <ul>
+                    <li class="delayed">Η JavaScript εκτελείται από τη μηχανή του εκάστοτε browser</li>
+                    <li class="delayed">Οι νέες μηχανές JavaScript κάνουν compile τον κώδικα
+                    πρίν τον τρέξουν: Καμία διαφορά κατά τη δική μας ανάπτυξη</li>
+                </ul>
+                <table class="delayed">
+                    <thead>
+                        <tr>
+                            <th>Browser</th>
+                            <th>JavaScript Engine</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Google Chrome</td>
+                            <td>V8</td>
+                        </tr>
+                        <tr>
+                            <td>Mozilla Firefox</td>
+                            <td>SpiderMonkey</td>
+                        </tr>
+                        <tr>
+                            <td>Opera</td>
+                            <td>Caracan</td>
+                        </tr>
+                        <tr>
+                            <td>Microsoft Internet Explorer</td>
+                            <td>Chakra</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </section>
+        <section data-title="basics about JavaScript: operators, data types etc">
+            <header class="slide">
+                <h1>Sta grigora...</h1>
+            </header>
+            <section class="slide" title="operators">
+                <h2>Operators (Telestes)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Τελεστές</th>
+                            <th>Λειτουργία</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="delayed">
+                            <td>+, -, *, /, %</td>
+                            <td>Αριθμητικές πράξεις</td>
+                        </tr>
+                        <tr class="delayed">
+                            <td>||, &&, !</td>
+                            <td>Λογικές πράξεις. ή, και, όχι</td>
+                        </tr>
+                        <tr class="delayed">
+                            <td>==, !=, &lt;, &gt;, &lt;=, &gt;=, ===, !==</td>
+                            <td>Σύγκριση</td>
+                        </tr>
+                        <tr class="delayed">
+                            <td>++, --</td>
+                            <td>Αύξηση, μείωση</td>
+                        </tr>
+                        <tr class="delayed">
+                            <td>+</td>
+                            <td>Ένωση αλφαριθμητικών (concatenation)</td>
+                        </tr>
+                        <tr class="delayed">
+                            <td>=, +=, -=, *=, /=, %=</td>
+                            <td>Ανάθεση τιμής</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section class="slide" title="if">
+                <h2>Domh epiloghs: if</h2>
+<pre><code>if( <span class="boolean">συνθήκη</span> ) {
+    <span class="string">σώμα 1</span>
+}
+else if( <span class="boolean">συνθήκη</span> ) {
+    <span class="string">σώμα 2</span>
+}
+...
+else {
+    <span class="string">σώμα 3</span>
+}</code></pre>
+            </section>
+            <section class="slide" title="switch">
+                <h2>Domh epiloghs: switch</h2>
+<pre><code>switch( <span class="boolean">παράσταση</span> ) {
+    <span class="keyword">case</span> τιμή1:
+        <span class="string">σώμα 1</span>
+        <span class="keyword">break;</span>
+    <span class="keyword">case</span> τιμή2:
+        <span class="string">σώμα 2</span>
+        <span class="keyword">break;</span>
+    ...
+    <span class="keyword">default</span>:
+        <span class="string">εναλλακτικό σώμα</span>
+}</code></pre>
+            </section>
+            <section class="slide" title="for">
+                <h2>Domh epanalhpsis: for</h2>
+<pre><code>for( <span class="boolean">αρχικοποίηση</span>; <span class="boolean">συνθήκη</span>; <span class="boolean">βήμα</span> ) {
+    <span class="string">σώμα</span>
+}</code></pre>
+            </section>
+            <section class="slide" title="while">
+                <h2>Domh epanalhpsis: while</h2>
+<pre><code>while( <span class="boolean">συνθήκη</span> ) {
+    <span class="string">σώμα</span>
+}</code></pre>
+            </section>
+            <section class="slide" title="do...while">
+                <h2>Domh epanalhpsis: do...while</h2>
+<pre><code>do {
+    <span class="string">σώμα</span>
+} while( <span class="boolean">συνθήκη</span> ) </code></pre>
+            </section>
+            <section class="slide" title="break">
+                <h2>break</h2>
+                <ul>
+                    <li class="delayed">
+                        Ίδιο σε C, C++, Java, PHP, ...
+                    </li>
+                    <li class="delayed">
+                        Εμφανίζεται μέσα σε μια ροή ελέγχου
+                        <ul>
+                            <li><code>for, while, do... while, switch</code></li>
+                        </ul>
+                    </li>
+                    <li class="delayed">
+                        Διακόπτει τη ροή και συνεχίζει αμέσως μετά
+                    </li>
+                    <li class="delayed">
+                        Δε γίνονται άλλες επαναλήψεις μετά το <code>break</code>
+                    </li>
+                </ul>
+            </section>
+            <section class="slide" title="continue">
+                <h2>continue</h2>
+                <ul>
+                    <li class="delayed">
+                        Ίδιο σε C, C++, Java, PHP, ...
+                    </li>
+                    <li class="delayed">
+                        Εμφανίζεται μέσα σε μια ροή <span class="keyword">επανάληψης</span>
+                        <ul>
+                            <li><code>for, while, do... while</code></li>
+                        </ul>
+                    </li>
+                    <li class="delayed">
+                        Διακόπτει τη ροή και συνεχίζει <span class="keyword">ελέγχοντας τη συνθήκη</span>
+                    </li>
+                    <li class="delayed">
+                        <span class="keyword">Μπορεί να γίνουν κι άλλες επαναλήψεις μετά το <code>continue</code></span>
+                    </li>
+                </ul>
+            </section>
+            <section class="slide" title="comments">
+                <h2>comments (sxolia)</h2>
+                <ul>
+                    <li class="delayed">
+                        // η υπόλοιπη γραμμή είναι σχόλιο
+                        <ul>
+                            <li>Το πολύ μια γραμμή</li>
+                        </ul>
+                    </li>
+                    <li class="delayed">
+                        /*Όλα τα περιεχόμενα είναι σχόλιο*/
+                        <ul>
+                            <li>1 ή περισσότερες γραμμές</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section class="slide" title="variables">
+                <h2>Metavlhtes sth JavaScript.</h2>
+                <ul>
+                    <li class="delayed">Αποθηκεύουν μια τιμή
+                        <ul>
+                            <li>Νούμερα, κείμενα, πίνακες, αντικείμενα...</li>
+                        </ul>
+                    </li>
+                    <li class="delayed">
+                        Δηλώνονται με τη λέξη κλειδί <code>var</code>
+                    </li>
+                    <li class="delayed"><code>var a;</code></li>
+                    <li class="delayed">
+                        Αναθέτουμε τιμή με τον τελεστή =
+                    </li>
+                    <li class="delayed">
+                        <code>a = 5;</code>
+                    </li>
+                </ul>
+            </section>
+            <section class="slide" title="variables">
+<pre onclick="alert( 'Hello world!' );"><code>&lt;script type="text/javascript"&gt;
+    var a = "Hello world!";
+    alert( a );
+&lt;/script&gt;</code></pre>
+            </section>
+            <section class="slide" title="variables">
+                <h2>Asthenes systhma typwn</h2>
+                <ul>
+                    <li class="delayed">
+                        Τύποι στη JavaScript:
+                        <ul>
+                            <li>Number</li>
+                            <li>Boolean</li>
+                            <li>String</li>
+                            <li class="keyword">Function</li>
+                            <li>Object</li>
+                        </ul>
+                    </li>
+                    <li class="delayed">
+                        Μία μεταβλητή μπορεί να αλλάζει τύπο
+                    </li>
+                </ul>
+            </section>
+            <section class="slide" title="variables">
+<pre><code>&lt;script type="text/javascript"&gt;
+    var a = "Hello";
+    <span onclick="alert( typeof( 'hello' ) );">alert( typeof( a ) );</span>
+    a = 5;
+    <span onclick="alert(typeof( 5 ) );">alert( typeof( a ) );</span>
+&lt;/script&gt;</code></pre>
+            </section>
+            <section class="slide" title="functions">
+                <h2>Functions</h2>
+<pre><code>function f_name( ορίσματα ) {
+    σώμα;
+}</code></pre>
+            </section>
+            <section class="slide" title="functions">
+                <h2>Functions</h2>
+                <ul>
+                    <li class="delayed">Παρόμοιες με συναρτήσεις σε C, C++, Java, PHP, ...</li>
+                    <li class="delayed">Ορίζουν υπο-ρουτίνες που κάνουν συγκεκριμένη δουλειά</li>
+                    <li class="delayed"> Σύνταξη:
+                        <ul>
+                            <li>
+                                Ορίζονται με τη λέξη κλειδί <span class="keyword">function</span>
+                            </li>
+                            <li>Ακολουθεί το όνομα της συνάρτησης</li>
+                            <li>Ακολουθούν τα ονόματα των ορισμάτων σε () χωρισμένα με κόμα</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section class="slide" title="functions">
+                <h2>Return</h2>
+                <ul>
+                    <li class="delayed">Οι συναρτήσεις επιστρέφουν τιμή με return</li>
+                    <li class="delayed">Η τιμή επιστροφής χρησιμοποιείται όπου έγινε η κλήση</li>
+                    <li class="delayed">Επιστροφή σημαίνει τερματισμός της συνάρτησης</li>
+                    <li class="delayed">Δεν ορίζουμε τύπο επιστροφής</li>
+                    <li class="delayed">Δεν είναι υποχρεωτικό</li>
+                </ul>
+            </section>
+            <section class="slide" title="functions">
+                <h2>Functions</h2>
+<pre onclick="alert( 4 + 8 );"><code>function add( a, b ) {
+    return a + b;
+}
+
+alert( add( 4, 7 ) );</code></pre>
+            </section>
+            <header class="slide"> <!-- Header just to emphasize -->
+                <h1>Προσοχή!</h1>
+            </header>
+            <section class="slide" title="function">
+                <h2>Functions</h2>
+                <ul>
+                    <li>Οι συναρτήσεις είναι μεταβλητές!!</li>
+                </ul>
+<pre onclick="alert( typeof( 5 ) );"><code>function foo(){
+    alert( 'hello' );
+}
+
+var foo = 5;
+alert( typeof( foo ) );
+foo(); //Σφάλμα. Το 5 δεν είναι συνάρτηση!
+</code></pre>
+            </section>
+            <section class="slide" title="Objects">
+                <h2>Objects</h2>
+                <ul>
+                    <li class="delayed">Στη JavaScript όλα είναι αντικείμενα!</li>
+                    <li class="delayed">Τι είναι ένα αντικείμενο;
+                        <ul>
+                            <li>Ένα λεξικό: Αντιστοίχιση τιμών σε κλειδιά</li>
+                        </ul>
+                    </li>
+                    <li class="delayed">Οι τιμές του λεξικού μπορεί να είναι 
+                        <ul>
+                            <li>Άλλο αντικέιμενο</li>
+                            <li>Αριθμός</li>
+                            <li>Αλφαριθμητικό</li>
+                            <li>Συνάρτηση</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section class="slide" title="Objects">
+                <h2>Objects</h2>
+                <ul>
+                    <li class="delayed">Δήλωση αντικειμένου
+<pre><code>// Κενό αντικείμενο
+var a = {};
+
+// αντικείμενο με δύο ιδιότητες
+var b = {
+    foo: <span class="keyword">5</span>,
+    bar: <span class="keyword">'hello'</span>
+};</code></pre>
+                    </li>
+                </ul>
+            </section>
+            <section class="slide" title="Objects">
+                <h2>Objects</h2>
+                <ul>
+                    <li class="delayed">Διαβάζουμε τις τιμές ενός αντικειμένου με <code>object[ 'key' ]</code></li>
+                    <li class="delayed">Ή καλύτερα <code>object.key</code></li>
+                </ul>
+<pre class="delayed"><code>var a = {
+    foo: <span class="keyword">'bar'</span>
+};
+var b = a.foo; // Το b έχει την τιμή 'bar'</code></pre>
+            </section>
+            <section class="slide" title="Objects">
+                <h2>Objects</h2>
+                <ul>
+                    <li class="delayed">Μπορούμε να προσθέσουμε ιδιότητες μετά τη δημιουργία</li>
+                </ul>
+<pre class="delayed"><code>var a = {
+    foo: <span class="keyword">0</span>
+}
+a.bar = 1; //Προσθήκη ιδιότητας bar με τιμή 1</code></pre>
+            </section>
+            <section class="slide" title="Objects">
+                <h2>Objects</h2>
+                <ul>
+                    <li class="delayed">Μέθοδοι αντικειμένων</li>
+                    <li class="delayed">Είναι κλειδιά που η τιμή τους είναι συνάρτηση</li>
+                </ul>
+<pre class="delayed"><code>var a = {
+    foo: <span class="keyword">function(){
+        return "I am a method";
+    }</span>,
+    bar: <span class="keyword">"I am a property"</span>
+};</code><code>
+
+<span onclick='alert( function(){ return "I am a method"; } );'>alert( a.foo );</span>
+<span onclick="alert( 'I am a method' );">alert( a.foo() );</span>
+<span onclick="alert( 'I am a property' );">alert( a.bar );</span>
+</code></pre>
+            </section>
+            <section class="slide" title="strings">
+                <h2>Strings</h2>
+                <ul>
+                    <li class="delayed">Μια τιμή που είναι μια σειρά από αριθμούς, χαρακτήρες, γράμματα, ...</li>
+                    <li class="delayed">Το μήκος μπορεί να αλλάζει</li>
+                    <li class="delayed">Δεν υπάρχει περιορισμός μήκους</li>
+                    <li class="delayed">Δεν πρόκειται για πίνακες από χαρακτήρες</li>
+                    <li class="delayed">Μπαίνουν σε μονά ή διπλά εισαγωγικά</li>
+                </ul>
+            </section>
+            <section class="slide" title="strings">
+                <h2>Strings as Objects</h2>
+                <ul>
+                    <li class="delayed">Κάθε αλφαριθμητικό έχει μεθόδους:
+                        <ul>
+                            <li><code>search</code> - Αναζήτηση μέσα στο String. Επιστρέφει τη θέση</li>
+                            <li><code>split</code> - Χωρίζει το string σε κομμάτια. Επιστρέφει πίνακα</li>
+                            <li><code>substr</code> - Παίρνει κομμάτι από το string</li>
+                        </ul>
+                    </li>
+                </ul>
+                <pre class="delayed"><code>var a = 'a-b-c-d-e';
+var b = a.split( '-' );
+
+<span onclick="alert( 'a-b-c-d-e'.split( '-' ) );">alert( b );</span>
+<span onclick="alert( 'd' );">alert( b[ 3 ] );</span></code></pre>
+            </section>
+            <section class="slide" title="Numbers">
+                <h2>Numbers</h2>
+                <ul>
+                    <li>Όλοι οι αριθμοί είναι τύπου Number</li>
+                    <li>64bit κινητής υποδιαστολής</li>
+                </ul>
+            </section>
+            <section class="slide" title="Αrrays">
+                <h2>Arrays</h2>
+                <ul>
+                    <li class="delayed">
+                        Δηλώνονται με <code>[]</code>
+                    </li>
+                    <li class="delayed">Οι τιμές του χωρίζονται με κόμματα</li>
+                    <li class="delayed">Η αρίθμηση ξεκινάει από το 0</li>
+                </ul>
+                <pre class="delayed"><code>var a = [ <span class="regex">1</span>, <span class="regex">'two'</span>, <span class="regex">3</span>, <span class="regex">[ 'a', 'b' ]</span> ];
+<span onclick="alert(1);">alert( a[ 0 ] );</span>
+<span onclick="alert('two');">alert( a[ 1 ] );</span>
+<span onclick="alert('b');">alert( a[ 3 ][ 1 ] );</span></code></pre>
+            </section>
+            <section class="slide" title="Arrays">
+                <h2>Arrays</h2>
+                <ul>
+                    <li class="delayed">Έχουν χρήσιμες ιδιότητες και μεθόδους</li>
+                    <li class="delayed">Ιδιότητα length:
+                            Περιέχει το μήκος του πίνακα:
+                            <pre><code>var a = [ 1, 2, 3, 'a' ];
+<span onclick="alert(4);">alert( a.length );</span></code></pre>
+                    </li>
+                    <li class="delayed">Μέθοδοι
+                        <ul>
+                            <li><code>pop();</code></li>
+                            <li><code>push();</code></li>
+                            <li><code>shift();</code></li>
+                            <li><code>slice();</code></li>
+                            <li><code>reverse();</code></li>
+                            <li><code>join();</code></li>
+                            <li><code>sort();</code></li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section class="slide" title="Arrays">
+<pre><code class="delayed"><span class="regex">var a = [ 1, 2, 3, 4 ];
+var b = a.pop();</span>
+<span onclick="this.childNodes[ 1 ].style.display = 'inline';">// a: <span class="keyword">[1,2,3]</span>;</span> 
+<span onclick="this.childNodes[ 1 ].style.display = 'inline';">// b: <span class="keyword">4</span>;</span> </code>
+<code class="delayed"><span class="regex">a.unshift( b );</span>
+<span onclick="this.childNodes[ 1 ].style.display = 'inline';">// a: <span class="keyword">[4,1,2,3]</span>;</span> </code>
+<code class="delayed"><span class="regex">a.push( 40 );</span>
+<span onclick="this.childNodes[ 1 ].style.display = 'inline';">// a: <span class="keyword">[4,1,2,3,40]</span>;</span> </code>
+<code class="delayed"><span class="regex">a.sort();</span>
+<span onclick="this.childNodes[ 1 ].style.display = 'inline';">// a: <span class="keyword">[1,2,3,4,40]</span>;</span> 
+</code></pre>
+                <style scoped">
+                    span span{
+                        display: none;
+                    }
+                </style>
+            </section>
+            <section class="slide" title="Debug">
+                <h2>To script mou den trexei!</h2>
+                <ul>
+                    <li class="delayed">Βλέπουμε συντακτικά σφάλματα και σφάλματα χρόνου εκτέλεσης
+                    στην κονσόλα σφαλμάτων του browser</li>
+                    <li class="delayed">Ανοίγει με <code>Ctrl + Shift + J</code> ή με 
+                    <code>Δεξί κλικ -&gt; inspect element</code></li>
+                    <li class="delayed">Χρησιμοποιούμε το alert ή την κονσόλα για να δούμε την τιμή μιας
+                    μεταβλητής.</li>
+                </ul>
+            </section>
+            <section class="slide" title="welldone">
+                <h2>Mathame</h2>
+                <p class="delayed">Εισαγωγή της γλώσσας JavaScript</p>
+                <ul>
+                    <li class="delayed">Βασική σύνταξη</li>
+                    <li class="delayed">Συνδιασμός JavaScript με HTML</li>
+                    <li class="delayed">Μεταβλητές</li>
+                    <li class="delayed">Τελεστές</li>
+                    <li class="delayed">δομές επιλογής / επανάληψης</li>
+                    <li class="delayed">Συναρτήσεις</li>
+                    <li class="delayed">Αντικείμενα</li>
+                    <li class="delayed">Αλφαριθμητικά</li>
+                    <li class="delayed">Πίνακες</li>
+                </ul>
+            </section>
+            <section class="slide" title="nexttime">
+                <h2>Next Time</h2>
+                <p style="margin-top: 30px;">jQuery - One to save us all!</p>
+                <div class="delayed">
+                    <h2 style="font-size: 4em">OR</h2>
+                    <p>How ho make cool stuff,<br /> the easy way</p>
+                </div>
+            </section>
+        </section>
+        <script src="js/slideshow.js"></script>
+        <script>
+        var slideshow = new SlideShow();
+
+        var snippets = document.querySelectorAll('.snippet');
+        for(var i=0; i<snippets.length; i++) {
+            new CSSSnippet(snippets[i]);
+        }
+
+        var cssControls = document.querySelectorAll('.css-control');
+        for(var i=0; i<cssControls.length; i++) {
+            new CSSControl(cssControls[i]);
+        }
+        </script>
+            
+    </body>
+</html>
