@@ -4,7 +4,7 @@
         echo "Move away.";
         exit();
     }
-    if( !isset( $_POST[ 'pass' ] ) || $_POST[ 'pass' ] != '77019bea641ff583ca2dcb801e431d53' ){
+    if( !isset( $_POST[ 'pass' ] ) || $_POST[ 'pass' ] != 'pass' ){
         echo "Get the HELL out of here!";
         exit();
     }
