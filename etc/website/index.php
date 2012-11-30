@@ -143,8 +143,7 @@
                     $url_mapping = array(
                         "http://t.co/zYWO0bzt" => "#lectures",
                         "http://t.co/Oh9NKXAC" => "#lectures-2",
-                        "http://t.co/f4C3mg38" => "#assignments-3",
-                        "Συγχαριτήρια" => "Συγχαρητήρια"
+                        "http://t.co/f4C3mg38" => "#assignments-3"
                     );
                     foreach ( $twitter as $twitt ) {
                         
